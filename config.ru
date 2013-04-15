@@ -1,12 +1,4 @@
-require 'sinatra/base'
+# This file is used by Rack-based servers to start the application.
 
-require 'rubygems'
-require 'bundler'
-require 'open-uri'
-require 'json'
-require 'data_mapper'
-
-Bundler.require
-
-require './myapp'
-run MyApp
+require ::File.expand_path('../config/environment',  __FILE__)
+run AngularRails::Application
