@@ -11,21 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321194121) do
+ActiveRecord::Schema.define(:version => 1) do
 
-  create_table "homes", :force => true do |t|
+  create_table "trips", :force => true do |t|
+    t.string   "uuid"
     t.string   "name"
-    t.boolean  "seen"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "movies", :force => true do |t|
-    t.string   "name"
-    t.boolean  "seen"
+    t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "description"
   end
 
+  create_table "travellers", :force => true do |t|
+    t.integer  "trip_id"
+    t.integer  "flight_id"
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "flights", :force => true do |t|
+    t.integer  "trip_id"
+    t.datetime "date"
+    t.string   "airport"
+    t.string   "airline"
+    t.string   "flight"
+    t.string   "confirmation_id"
+    t.string   "ticket_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 end

@@ -1,0 +1,11 @@
+<div>
+	<p>Movie Id: {{movie.id}}</p>
+	<p>Movie Name: {{movie.name}}</p>
+	<p>Movie Description: {{movie.description}}</p>
+	<p>You have seen this movie ? {{convertBoolean(movie.seen)}}</p>
+</div>
+<a class='btn' href="#/movies/{{movie.id}}/edit">Edit</a>
+<button type="input" class="btn btn-danger" ng-click='remove(movie.id)'>Delete</button>
+
+
+

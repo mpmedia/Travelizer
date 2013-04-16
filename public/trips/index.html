@@ -1,0 +1,8 @@
+<form name="addTripForm">
+    <fieldset>
+        <legend>Add a Trip</legend>
+        <input name="tripname" type="text" placeholder="Europe 2013" ng-model="trip.name" required/><br/>
+        <textarea placeholder="Backpacking through France, Italy, Spain..." ng-model='trip.description'></textarea><br/>
+        <button type="submit" class="btn btn-primary" ng-click="create(trip)" ng-disabled="addTripForm.$invalid">Submit</button>
+    </fieldset>
+</form>
