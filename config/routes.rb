@@ -1,4 +1,4 @@
-AngularRails::Application.routes.draw do
+Sojo::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -14,6 +14,7 @@ AngularRails::Application.routes.draw do
   #   resources :products
   resources :home
   resources :trip
+  resources :traveller
   # Sample resource route with options:
   #   resources :products do
   #     member do

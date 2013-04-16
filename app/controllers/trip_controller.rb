@@ -5,7 +5,7 @@ class TripController < ApplicationController
   end
 
   def show
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find(params[:id]).to_json(:include => :travellers)
     respond_with(@trip)
   end
 

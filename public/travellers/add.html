@@ -1,0 +1,19 @@
+<table class="table table-condensed table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="traveller in trip.travellers">
+        <td>{{traveller.name}}</td>
+    </tr>
+    </tbody>
+</table>
+<form name="addTravellerForm">
+    <fieldset>
+        <legend>Add a Traveller to {{trip.name}}</legend>
+        <input name="travellername" type="text" placeholder="Jon Doe" ng-model="traveller.name" required/><br/>
+        <button type="submit" class="btn btn-primary" ng-click="create(traveller)" ng-disabled="addTravellerForm.$invalid">Submit</button>
+    </fieldset>
+</form>

@@ -1,10 +1,10 @@
-function TripsCtrl($scope, Trips) {"use strict";
+function TripsCtrl($scope, $location, Trips) {"use strict";
     $scope.trips = Trips.index();
 
     $scope.create = function(trip) {
         var tripService = new Trips(trip);
         tripService.$create(function(trip) {
-            $scope.trips = Trips.index();
+            $location.path('/travellers/' + trip.id);
         });
     }
 }
@@ -38,25 +38,5 @@ function TripShowCtrl($scope, $location, $routeParams, $dialog, Trip) {"use stri
     $scope.convertBoolean = function(val) {
         return val ? 'Yes' : 'No';
     };
-}
-
-function TripEditCtrl($scope, $routeParams, $location, Trip) {
-    "use strict";
-    
-    $scope.master = {};
-    var trip_id = $routeParams.trip_id;
-    $scope.trip = Trip.show({
-        trip_id : trip_id
-    }, function(resource) {
-        $scope.master = angular.copy(resource);
-    });
-
-    $scope.update = function(trip) {
-        trip.$update({
-            trip_id : trip_id
-        }, function(updatedTrip) {
-            $location.path('/trips/' + updatedTrip.id);
-        });
-    }
 }
 
