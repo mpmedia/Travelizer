@@ -1,9 +1,15 @@
 <h1>{{trip.name}}</h1>
 <p>{{trip.description}}</p>
-<p>{{trip.uuid}}</p>
+<ul>
+    <li ng-repeat="traveller in trip.travellers">
+        <td>{{traveller.name}}</td>
+    </li>
+</ul>
+
+<p>Share: <a href="http://sojoapp.hreoku.com/{{trip.uuid}}">http://sojoapp.hreoku.com/{{trip.uuid}}</a></p>
 <br/>
-<a class='btn' href="#/movies/{{movie.id}}/edit">Edit</a>
-<button type="input" class="btn btn-danger" ng-click='remove(movie.id)'>Delete</button>
+<a class='btn' href="#/trips/{{trip.id}}/edit">Edit</a>
+<button type="input" class="btn btn-danger" ng-click='remove(trip.id)'>Delete</button>
 
 
 
