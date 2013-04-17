@@ -1,0 +1,21 @@
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="flight in trip.flights">
+        <td>{{flight.name}}</td>
+        <td><a class="btn btn-danger" ng-click="remove(flight.id)">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<form name="addFlightForm">
+    <fieldset>
+        <legend>Add a Flight to {{trip.name}}</legend>
+        <input name="flightname" type="text" placeholder="Jon Doe" ng-model="flight.name" required/>
+        <a class="btn btn-primary"  ng-click="create(flight)" ng-disabled="addFlightForm.$invalid">Add</a>
+    </fieldset>
+</form>

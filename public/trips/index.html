@@ -1,8 +1,33 @@
-<form name="addTripForm">
-    <fieldset>
-        <legend>Add a Trip</legend>
-        <input name="tripname" type="text" placeholder="Europe 2013" ng-model="trip.name" required/><br/>
-        <textarea placeholder="Backpacking through France, Italy, Spain..." ng-model='trip.description'></textarea><br/>
-        <button type="submit" class="btn btn-primary" ng-click="create(trip)" ng-disabled="addTripForm.$invalid">Submit</button>
-    </fieldset>
-</form>
+<ol class="breadcrumb">
+    <li>
+        <a href="#">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">Trips</li>
+</ol>
+<fieldset>
+    <legend>Your Trips</legend>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="trip in trips">
+            <td><a href="#/trips/{{trip.id}}">{{trip.name}}</a></td>
+            <td>{{trip.description}}</td>
+            <td><a class="btn btn-danger" ng-click="removeTrip(trip.id)">Delete</a></td>
+        </tr>
+        <tr>
+            <form name="addTripForm">
+                <td><input name="tripname" type="text" placeholder="Europe 2013" ng-model="trip.name" required/></td>
+                <td><textarea placeholder="Backpacking through France, Italy, Spain..." ng-model='trip.description'></textarea></td>
+                <td><a class="btn btn-primary"  ng-click="create(trip)" ng-disabled="addTripForm.$invalid">Add</a></td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>

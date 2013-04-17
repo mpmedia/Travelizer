@@ -1,5 +1,6 @@
 class Trip < ActiveRecord::Base
   has_many :travellers
+  has_many :flights
   before_create :create_unique_identifier
 
   attr_accessible :name, :description

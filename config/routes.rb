@@ -15,6 +15,7 @@ Sojo::Application.routes.draw do
   resources :home
   resources :trip
   resources :traveller
+  resources :flight
   # Sample resource route with options:
   #   resources :products do
   #     member do

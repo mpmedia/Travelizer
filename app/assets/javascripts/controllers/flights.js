@@ -1,17 +1,17 @@
-function TravellersCtrl($scope, $location, $routeParams, $dialog, Travellers, Traveller, Trip) {"use strict";
+function FlightsCtrl($scope, $location, $routeParams, $dialog, Flights, Flight, Trip) {"use strict";
     $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
 
-    $scope.create = function(traveller) {
-        traveller['trip_id'] = $routeParams.trip_id;
-        var travellerService = new Travellers(traveller);
-        travellerService.$create(function(traveller) {
+    $scope.create = function(flight) {
+        flight['trip_id'] = $routeParams.trip_id;
+        var flightService = new Flights(flight);
+        flightService.$create(function(flight) {
             $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
-            //$scope.addTravellerForm.reset();
+            //$scope.addFlightForm.reset();
         });
     };
 
     $scope.remove = function(id) {
-        var title = 'Delete Traveller?', msg = 'Are you sure you want to delete this traveller?', btns = [{
+        var title = 'Delete Flight?', msg = 'Are you sure you want to delete this flight?', btns = [{
             result : 'cancel',
             label : 'Cancel'
         }, {
@@ -22,8 +22,8 @@ function TravellersCtrl($scope, $location, $routeParams, $dialog, Travellers, Tr
 
         $dialog.messageBox(title, msg, btns).open().then(function(result) {
             if (result === 'ok') {
-                Traveller.destroy({
-                    traveller_id : id
+                Flight.destroy({
+                    flight_id : id
                 }, function() {
                     $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
                 });

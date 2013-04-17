@@ -4,10 +4,11 @@
 //= require angular-resource
 //= require services/tripsService
 //= require services/travellersService
+//= require services/flightsService
 //= require controllers/trips
-//= require controllers/travellers
+//= require controllers/flights
 
-angular.module('sojo', ['tripsService', 'travellersService', 'ui.bootstrap'])
+angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', 'ui.bootstrap'])
   .config(['$httpProvider', function(provider){
     provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   }])
@@ -15,6 +16,6 @@ angular.module('sojo', ['tripsService', 'travellersService', 'ui.bootstrap'])
     router
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
       .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
-      .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellersCtrl})
+      .when('/flights/:trip_id', {templateUrl:'/flights/add.html', controller:FlightsCtrl})
       .otherwise({redirectTo: '/trips'});
   }]);
