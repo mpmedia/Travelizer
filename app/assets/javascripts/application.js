@@ -6,7 +6,6 @@
 //= require services/travellersService
 //= require services/flightsService
 //= require controllers/trips
-//= require controllers/flights
 
 angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', 'ui.bootstrap'])
   .config(['$httpProvider', function(provider){
@@ -16,6 +15,5 @@ angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', '
     router
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
       .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
-      .when('/flights/:trip_id', {templateUrl:'/flights/add.html', controller:FlightsCtrl})
       .otherwise({redirectTo: '/trips'});
   }]);

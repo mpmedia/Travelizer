@@ -34,9 +34,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "date"
     t.string   "airport"
     t.string   "airline"
-    t.string   "flight"
-    t.string   "confirmation_id"
-    t.string   "ticket_id"
+    t.string   "flight_no"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
