@@ -6,7 +6,7 @@
     <li class="active">Trips</li>
 </ol>
 <fieldset>
-    <legend>Your Trips</legend>
+    <legend><i class="icon-suitcase"></i>&nbsp;Your Trips</legend>
     <table class="table table-striped table-hover">
         <thead>
         <tr>
@@ -19,13 +19,13 @@
         <tr ng-repeat="trip in trips">
             <td><a href="#/trips/{{trip.id}}">{{trip.name}}</a></td>
             <td>{{trip.description}}</td>
-            <td><a class="btn btn-danger" ng-click="removeTrip(trip.id)">Delete</a></td>
+            <td><a class="btn btn-danger" ng-click="removeTrip(trip.id)"><i class="icon-remove"></i></a></td>
         </tr>
         <tr>
             <form name="addTripForm">
                 <td><input name="tripname" type="text" placeholder="Europe 2013" ng-model="trip.name" required/></td>
                 <td><textarea placeholder="Backpacking through France, Italy, Spain..." ng-model='trip.description'></textarea></td>
-                <td><a class="btn btn-primary"  ng-click="create(trip)" ng-disabled="addTripForm.$invalid">Add</a></td>
+                <td><a class="btn btn-primary"  ng-click="create(trip)" ng-disabled="addTripForm.$invalid"><i class="icon-plus"></i></a></td>
             </form>
         </tr>
         </tbody>

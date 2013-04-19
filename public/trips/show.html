@@ -9,21 +9,22 @@
     </li>
     <li class="active">{{trip.name}}</li>
 </ol>
-<div class="well well-small">
-    {{trip.description}}
+<div class="page-header">
+    <h1>{{trip.name}}</h1>
+    <p class="muted">{{trip.description}}</p>
 </div>
 <fieldset>
-    <legend>People going on this trip</legend>
+    <legend><i class="icon-group"></i>&nbsp;People going on this trip</legend>
     <table class="table table-striped table-hover">
         <tbody>
         <tr ng-repeat="traveller in trip.travellers">
             <td>{{traveller.name}}</td>
-            <td><a class="btn btn-danger" ng-click="removeTraveller(traveller.id)">Delete</a></td>
+            <td><a class="btn btn-danger" ng-click="removeTraveller(traveller.id)"><i class="icon-remove"></i></a></td>
         </tr>
         <tr>
             <form name="addTravellerForm">
                 <td><input name="travellername" type="text" placeholder="Jon Doe" ng-model="traveller.name" required/></td>
-                <td><a class="btn btn-primary" ng-click="createTraveller(traveller)" ng-disabled="addTravellerForm.$invalid">Add</a></td>
+                <td><a class="btn btn-primary" ng-click="createTraveller(traveller)" ng-disabled="addTravellerForm.$invalid"><i class="icon-plus"></i></a></td>
             </form>
         </tr>
         </tbody>
@@ -31,30 +32,50 @@
 </fieldset>
 
 <fieldset>
-    <legend>Flights on this trip</legend>
+    <legend><i class="icon-plane"></i>&nbsp;Flights on this trip</legend>
     <table class="table table-striped table-hover">
         <tbody>
-        <tr ng-repeat="flight in trip.flights">
-            <td>{{flight.date}}</td>
-            <td>{{flight.airport}}</td>
-            <td>{{flight.airline}}</td>
-            <td>{{flight.flight_no}}</td>
-            <td><a class="btn btn-danger" ng-click="removeFlight(flight.id)">Delete</a></td>
-        </tr>
-        <tr>
-            <form name="addFlightForm">
-                <td><input name="flightdate" type="text" placeholder="April 24, 2013" ng-model="flight.date" required/></td>
-                <td><input name="flightairport" type="text" placeholder="LAX" ng-model="flight.airport" required/></td>
-                <td><input name="flightairline" type="text" placeholder="DL" ng-model="flight.airline" required/></td>
-                <td><input name="flightno" type="text" placeholder="1234" ng-model="flight.flight_no" required/></td>
-                <td><a class="btn btn-primary" ng-click="createFlight(flight)" ng-disabled="addFlightForm.$invalid">Add</a></td>
-            </form>
-        </tr>
+            <tr ng-repeat="flight in trip.flights">
+                <td>
+                    <h3>{{flight.depart_from}}&nbsp;<i class="icon-arrow-right"></i>&nbsp;{{flight.arrive_at}}</h3>
+                </td>
+                <td><a class="btn btn-danger" ng-click="removeFlight(flight.id)"><i class="icon-remove"></i></a></td>
+            </tr>
         </tbody>
     </table>
+    <form name="addFlightForm" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label">Flight Info</label>
+            <div class="controls">
+                <input name="airline" class="input-small" type="text" placeholder="DL" ng-model="flight.airline" required/>
+                <input name="flight_no" class="input-small" type="text" placeholder="123" ng-model="flight.flight_no" required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Departure</label>
+            <div class="controls">
+                <input name="depart_from" class="input-small" type="text" placeholder="LAX" ng-model="flight.depart_from" required/>
+                <input name="depature_time" type="text" placeholder="April 12th, 2013 5:45pm" ng-model="flight.departure_time" required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Arrival</label>
+            <div class="controls">
+                <input name="arrive_at" class="input-small" type="text" placeholder="PHL" ng-model="flight.arrive_at" required/>
+                <input name="arrival_time" type="text" placeholder="April 12th, 2013 9:45pm" ng-model="flight.arrival_time" required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a class="btn btn-primary" ng-click="createFlight(flight)" ng-disabled="addFlightForm.$invalid">Add</a>
+            </div>
+        </div>
+    </form>
 </fieldset>
 
-<p>Share: <a href="http://sojoapp.hreoku.com/{{trip.uuid}}">http://sojoapp.hreoku.com/{{trip.uuid}}</a></p>
+
+
+
 
 
 

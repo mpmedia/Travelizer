@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(:version => 1) do
 
   create_table "flights", :force => true do |t|
     t.integer  "trip_id"
-    t.datetime "date"
-    t.string   "airport"
     t.string   "airline"
     t.string   "flight_no"
+    t.string   "depart_from"
+    t.datetime "departure_time"
+    t.string   "arrive_at"
+    t.datetime "arrival_time"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
