@@ -37,7 +37,10 @@
         <tbody>
             <tr ng-repeat="flight in trip.flights">
                 <td>
-                    <h3>{{flight.depart_from}}&nbsp;<i class="icon-arrow-right"></i>&nbsp;{{flight.arrive_at}}</h3>
+                    <h5>{{flight.depart_from}}&nbsp;<i class="icon-arrow-right"></i>&nbsp;{{flight.arrive_at}}</h5>
+                    <strong>Departing at</strong> {{flight.departure_time}}<br/>
+                    <strong>Arriving at</strong> {{flight.arrival_time}}<br/>
+                    via {{flight.airline}} {{flight.flight_no}}
                 </td>
                 <td><a class="btn btn-danger" ng-click="removeFlight(flight.id)"><i class="icon-remove"></i></a></td>
             </tr>
