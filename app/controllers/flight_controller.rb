@@ -23,6 +23,9 @@ class FlightController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @flight = @trip.flights.create(params[:flight])
+    params[:passengers].each do |passenger|
+      @flight.passengers.create(passenger)
+    end
     @trip.save
     respond_with(@flight)
   end

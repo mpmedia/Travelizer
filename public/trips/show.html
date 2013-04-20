@@ -46,15 +46,15 @@
         </div>
         <div class="span5">
             <dl class="dl-horizontal">
-                <dt>Travelling with</dt>
-                <dd>Jesal Gadhia</dd>
-                <dd>Rinal Gadhia</dd>
+                <dt>Passengers</dt>
+                <dd ng-repeat="passenger in flight.passengers">{{passenger.name}} / {{passenger.seat}}</dd>
             </dl>
         </div>
         <div class="span3">
-            <a class="btn btn-danger" ng-click="removeFlight(flight._id)"><i class="icon-remove"></i></a>
+            <a class="btn btn-danger" ng-click="removeFlight(flight)"><i class="icon-remove"></i></a>
         </div>
     </div>
+    <hr/>
     <div class="row">
         <form name="addFlightForm" class="form-vertical">
              <div class="span4">
@@ -86,20 +86,21 @@
                      </div>
                  </div>
              </div>
-            <!--<div class="span8">
+            <div class="span8">
                 <div class="control-group">
                     <label class="control-label">Passenger Info</label>
-                    <div ng-repeat="passenger in passengers">
-                        <ng-form name="passengerForm">
-                            <div class="controls">
-                                <input name="passenger_name" class="input-medium" type="text" placeholder="Name" ng-model="trip.flight.passenger.name" required/>
-                                <input name="passenger_ticket_no" class="input-medium" type="text" placeholder="Ticket #" ng-model="trip.flight.passenger.ticket_no" required/>
-                                <input name="passenger_seat" class="input-mini" type="text" placeholder="Seat #" ng-model="trip.flight.passenger.seat" required/>
-                            </div>
-                        </ng-form>
+                    <div class="controls" ng-repeat="passenger in passengers">
+                        <input name="passenger_name" class="input-medium" type="text" placeholder="Name" ng-model="passenger.name" required/>
+                        <input name="passenger_ticket_no" class="input-medium" type="text" placeholder="Ticket #" ng-model="passenger.ticket_no" required/>
+                        <input name="passenger_seat" class="input-mini" type="text" placeholder="Seat #" ng-model="passenger.seat" required/>
                     </div>
                 </div>
-            </div>-->
+                <div class="control-group">
+                    <div class="controls">
+                        <a class="btn btn-link" ng-click="addFlightPassenger()">Add passenger</a>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </fieldset>

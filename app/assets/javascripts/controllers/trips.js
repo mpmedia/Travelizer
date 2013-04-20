@@ -33,17 +33,21 @@ function TripsCtrl($scope, $dialog, Trips, Trip) {"use strict";
 
 function TripShowCtrl($scope, $dialog, $routeParams, Travellers, Traveller, Flights, Flight, Trip) {"use strict";
     $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
+    $scope.passengers = [{name:'', ticket_no:'', seat:''}];
 
     $scope.createFlight = function(flight) {
         flight['trip_id'] = $routeParams.trip_id;
+        flight['passengers'] = $scope.passengers;
+        console.log(flight);
         var flightService = new Flights(flight);
         flightService.$create(function(flight) {
-            $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
+            $scope.trip.flights.push(flight);
             $scope.flight = '';
+            $scope.passengers = [{name:'', ticket_no:'', seat:''}];
         });
     };
 
-    $scope.removeFlight = function(id) {
+    $scope.removeFlight = function(flight) {
         var title = 'Delete Flight?', msg = 'Are you sure you want to delete this flight?', btns = [{
             result : 'cancel',
             label : 'Cancel'
@@ -57,13 +61,17 @@ function TripShowCtrl($scope, $dialog, $routeParams, Travellers, Traveller, Flig
             if (result === 'ok') {
                 Flight.destroy({
                     trip_id : $routeParams.trip_id,
-                    flight_id : id
+                    flight_id : flight._id
                 }, function() {
-                    $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
-                    //$location.path('#/trips/' + $routeParams.trip_id);
+                    $scope.trip.flights.splice($scope.trip.flights.indexOf(flight, 1));
                 });
             }
         });
+    };
+
+    $scope.addFlightPassenger = function() {
+        $scope.passenger = '';
+        $scope.passengers.push({name:'', ticket_no:'', seat:''});
     };
 
     $scope.createTraveller = function(traveller) {

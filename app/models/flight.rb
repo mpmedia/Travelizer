@@ -11,4 +11,5 @@ class Flight
   field :gate, type: String
 
   embedded_in :trip
+  embeds_many :passengers
 end
