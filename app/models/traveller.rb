@@ -1,5 +1,7 @@
-class Traveller < ActiveRecord::Base
-  belongs_to :trip
-  belongs_to :flight
-  attr_accessible :name, :trip_id
+class Traveller
+  include Mongoid::Document
+
+  field :name, type: String
+
+  embedded_in :trip
 end

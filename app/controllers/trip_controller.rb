@@ -21,7 +21,7 @@ class TripController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(params[:trip])
+    @trip = Trip.create(params[:trip])
     @trip.save
     respond_with(@trip)
   end

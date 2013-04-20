@@ -21,13 +21,15 @@ class FlightController < ApplicationController
   end
 
   def create
-    @flight = Flight.new(params[:flight])
-    @flight.save
+    @trip = Trip.find(params[:trip_id])
+    @flight = @trip.flights.create(params[:flight])
+    @trip.save
     respond_with(@flight)
   end
 
   def destroy
-    @flight = Flight.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
+    @flight = @trip.flights.find(params[:id])
     @flight.destroy
     respond_to do |format|
       format.json  { head :ok }

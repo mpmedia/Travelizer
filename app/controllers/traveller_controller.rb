@@ -21,13 +21,15 @@ class TravellerController < ApplicationController
   end
 
   def create
-    @traveller = Traveller.new(params[:traveller])
-    @traveller.save
+    @trip = Trip.find(params[:trip_id])
+    @traveller = @trip.travellers.create(params[:traveller])
+    @trip.save
     respond_with(@traveller)
   end
 
   def destroy
-    @traveller = Traveller.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
+    @traveller = @trip.travellers.find(params[:id])
     @traveller.destroy
     respond_to do |format|
       format.json  { head :ok }

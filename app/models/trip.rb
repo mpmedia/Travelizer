@@ -1,13 +1,10 @@
-class Trip < ActiveRecord::Base
-  has_many :travellers
-  has_many :flights
-  before_create :create_unique_identifier
+class Trip
+  include Mongoid::Document
 
-  attr_accessible :name, :description
+  field :uuid, type: String
+  field :name, type: String
+  field :description, type: String
 
-  def create_unique_identifier
-    begin
-      self.uuid = SecureRandom.hex(5)
-    end while self.class.exists?(:uuid => uuid)
-  end
+  embeds_many :flights
+  embeds_many :travellers
 end
