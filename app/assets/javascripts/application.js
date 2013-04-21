@@ -1,13 +1,16 @@
-//= require jquery
+//= require jquery.min
 //= require angular
-//= require ui-bootstrap-tpls-0.2.0 
+//= require bootstrap.min
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
+//= require angular-strap.min
 //= require angular-resource
 //= require services/tripsService
 //= require services/travellersService
 //= require services/flightsService
 //= require controllers/trips
 
-angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', 'ui.bootstrap'])
+angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', '$strap.directives'])
   .config(['$httpProvider', function(provider){
     provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   }])

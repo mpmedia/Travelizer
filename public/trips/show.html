@@ -69,8 +69,8 @@
                  <div class="control-group">
                      <label class="control-label">Departure Date/Time</label>
                      <div class="controls">
-                         <input name="date" class="input-medium" type="text" placeholder="April 12th, 2013" ng-model="flight.date" required/>
-                         <input name="time" class="input-small" type="text" placeholder="5:45pm" ng-model="flight.time" required/>
+                         <input name="date" class="input-medium" type="text" placeholder="April 12th, 2013" ng-model="flight.date" data-date-format="dd/mm/yyyy" bs-datepicker required/>
+                         <input name="time" class="input-small" type="text" placeholder="5:45pm" ng-model="flight.time" bs-timepicker required/>
                      </div>
                  </div>
                  <div class="control-group">
