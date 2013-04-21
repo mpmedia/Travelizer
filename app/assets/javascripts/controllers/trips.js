@@ -43,6 +43,12 @@ function TripShowCtrl($scope, $routeParams, Travellers, Traveller, Flights, Flig
         });
     };
 
+    $scope.findFlightPassenger = function(query) {
+        return $.map($scope.trip.travellers, function(traveller) {
+            return traveller.name;
+        });
+    };
+
     $scope.addFlightPassenger = function() {
         $scope.passenger = '';
         $scope.passengers.push({name:'', ticket_no:'', seat:''});

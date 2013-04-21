@@ -23,7 +23,7 @@
         <tr ng-repeat="trip in trips">
             <td><a href="#/trips/{{trip._id}}">{{trip.name}}</a></td>
             <td>{{trip.description}}</td>
-            <td><a class="btn btn-danger" ng-click="removeTrip(trip)"><i class="icon-remove"></i></a></td>
+            <td><a class="btn btn-danger" ng-click="removeTrip(trip)"><i class="icon-trash"></i></a></td>
         </tr>
         <tr>
             <form name="addTripForm">

@@ -19,7 +19,7 @@
         <tbody>
         <tr ng-repeat="traveller in trip.travellers">
             <td>{{traveller.name}}</td>
-            <td><a class="btn btn-danger" ng-click="removeTraveller(traveller)"><i class="icon-remove"></i></a></td>
+            <td><a class="btn btn-danger" ng-click="removeTraveller(traveller)"><i class="icon-trash"></i></a></td>
         </tr>
         <tr>
             <form name="addTravellerForm">
@@ -51,7 +51,7 @@
             </dl>
         </div>
         <div class="span3">
-            <a class="btn btn-danger" ng-click="removeFlight(flight)"><i class="icon-remove"></i></a>
+            <a class="btn btn-danger" ng-click="removeFlight(flight)"><i class="icon-trash"></i></a>
         </div>
     </div>
     <hr/>
@@ -69,8 +69,14 @@
                  <div class="control-group">
                      <label class="control-label">Departure Date/Time</label>
                      <div class="controls">
-                         <input name="date" class="input-medium" type="text" placeholder="April 12th, 2013" ng-model="flight.date" data-date-format="dd/mm/yyyy" bs-datepicker required/>
-                         <input name="time" class="input-small" type="text" placeholder="5:45pm" ng-model="flight.time" bs-timepicker required/>
+                         <div class="input-append">
+                            <input name="date" class="input-small" type="text" placeholder="Date" ng-model="flight.date" data-date-format="dd/mm/yyyy" bs-datepicker required/>
+                             <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+                         </div>
+                         <div class="input-append">
+                             <input name="time" class="input-mini" type="text" placeholder="Time" ng-model="flight.time" bs-timepicker required/>
+                             <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
+                         </div>
                      </div>
                  </div>
                  <div class="control-group">
@@ -90,7 +96,7 @@
                 <div class="control-group">
                     <label class="control-label">Passenger Info</label>
                     <div class="controls" ng-repeat="passenger in passengers">
-                        <input name="passenger_name" class="input-medium" type="text" placeholder="Name" ng-model="passenger.name" required/>
+                        <input name="passenger_name" class="input-medium" type="text" placeholder="Name" ng-model="passenger.name" bs-typeahead="findFlightPassenger" required/>
                         <input name="passenger_ticket_no" class="input-medium" type="text" placeholder="Ticket #" ng-model="passenger.ticket_no" required/>
                         <input name="passenger_seat" class="input-mini" type="text" placeholder="Seat #" ng-model="passenger.seat" required/>
                     </div>
