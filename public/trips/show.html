@@ -10,36 +10,46 @@
     <li class="active">{{trip.name}}</li>
 </ol>
 <div class="page-header">
-    <h1>{{trip.name}}</h1>
-    <p class="muted">{{trip.description}}</p>
+    <h3>{{trip.name}} <small>{{trip.description}}</small></h3>
 </div>
 <fieldset>
-    <legend><i class="icon-group"></i>&nbsp;People going on this trip</legend>
-    <table class="table table-hover">
-        <tbody>
-        <tr ng-repeat="traveller in trip.travellers">
-            <td>{{traveller.name}}</td>
-            <td><a class="btn btn-danger" ng-click="removeTraveller(traveller)"><i class="icon-trash"></i></a></td>
-        </tr>
-        <tr>
-            <form name="addTravellerForm">
-                <td><input name="traveller_name" type="text" placeholder="Jon Doe" ng-model="traveller.name" required/></td>
-                <td><a class="btn btn-primary" ng-click="createTraveller(traveller)" ng-disabled="addTravellerForm.$invalid"><i class="icon-plus"></i></a></td>
-            </form>
-        </tr>
-        </tbody>
-    </table>
+    <legend><i class="icon-group"></i>&nbsp;Travellers</legend>
+    <div class="alert alert-info" ng-show="!trip.travellers.length">
+        <strong>Who's going?</strong>
+        Add some travellers to your trip (including yourself) by clicking on the button below.
+    </div>
+    <div class="row top-buffer" ng-repeat="traveller in trip.travellers">
+        <div class="span3">
+            {{traveller.name}}
+        </div>
+        <div class="span3">
+            <a class="btn btn-danger btn-mini" ng-click="removeTraveller(traveller)"><i class="icon-trash"></i></a>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="span4">
+            <a class="btn btn-link" href="#/travellers/{{trip._id}}">Add Traveller</a>
+        </div>
+    </div>
 </fieldset>
-
+<div class="row top-buffer">
+    <div class="span12">
+        <p>&nbsp;</p>
+    </div>
+</div>
 <fieldset>
-    <legend><i class="icon-plane"></i>&nbsp;Flights on this trip</legend>
+    <legend><i class="icon-plane"></i>&nbsp;Flights</legend>
+    <div class="alert alert-info" ng-show="!trip.flights.length">
+        <strong>How you gonna get there?</strong>
+        Add some flights to your trip by clicking on the button below.
+    </div>
     <div class="row" ng-repeat="flight in trip.flights">
         <div class="span4">
             <dl class="dl-horizontal">
                 <dt>{{flight.airport}}</dt>
                 <dd>{{flight.airline}} {{flight.flight_no}}</dd>
-                <dt>{{flight.date}}</dt>
-                <dd>{{flight.time}}</dd>
+                <dt>{{flight.date | date:'EEE, MMM d, y'}}</dt>
+                <dd>{{flight.time | date:'h:mm a'}}</dd>
                 <dt>Terminal {{flight.terminal}}</dt>
                 <dd>Gate {{flight.gate}}</dd>
             </dl>
@@ -51,65 +61,13 @@
             </dl>
         </div>
         <div class="span3">
-            <a class="btn btn-danger" ng-click="removeFlight(flight)"><i class="icon-trash"></i></a>
+            <a class="btn btn-danger btn-mini" ng-click="removeFlight(flight)"><i class="icon-trash"></i></a>
         </div>
     </div>
-    <hr/>
     <div class="row">
-        <form name="addFlightForm" class="form-vertical">
-             <div class="span4">
-                 <div class="control-group">
-                     <label class="control-label">Flight Info</label>
-                     <div class="controls">
-                         <input name="airport" class="input-big" type="text" placeholder="Airport" ng-model="flight.airport" bs-typeahead="findAirport" required/>
-                     </div>
-                     <div class="controls">
-                         <input name="airline" class="input-medium" type="text" placeholder="Airline" ng-model="flight.airline" bs-typeahead="findAirline" required/>
-                         <input name="flight_no" class="input-mini" type="text" placeholder="Flight #" ng-model="flight.flight_no" required/>
-                     </div>
-                 </div>
-                 <div class="control-group">
-                     <label class="control-label">Departure Date/Time</label>
-                     <div class="controls">
-                         <div class="input-append">
-                            <input name="date" class="input-small" type="text" placeholder="Date" ng-model="flight.date" data-date-format="dd/mm/yyyy" bs-datepicker required/>
-                             <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
-                         </div>
-                         <div class="input-append">
-                             <input name="time" class="input-mini" type="text" placeholder="Time" ng-model="flight.time" bs-timepicker required/>
-                             <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="control-group">
-                     <label class="control-label">Terminal/Gate</label>
-                     <div class="controls">
-                         <input name="terminal" class="input-mini" type="text" placeholder="Terminal" ng-model="flight.terminal" required/>
-                         <input name="gate" class="input-mini" type="text" placeholder="Gate #" ng-model="flight.gate" required/>
-                     </div>
-                 </div>
-                 <div class="control-group">
-                     <div class="controls">
-                         <a class="btn btn-primary" ng-click="createFlight(flight)" ng-disabled="addFlightForm.$invalid">Add</a>
-                     </div>
-                 </div>
-             </div>
-            <div class="span8">
-                <div class="control-group">
-                    <label class="control-label">Passenger Info</label>
-                    <div class="controls" ng-repeat="passenger in passengers">
-                        <input name="passenger_name" class="input-medium" type="text" placeholder="Name" ng-model="passenger.name" bs-typeahead="findFlightPassenger" required/>
-                        <input name="passenger_ticket_no" class="input-medium" type="text" placeholder="Ticket #" ng-model="passenger.ticket_no" required/>
-                        <input name="passenger_seat" class="input-mini" type="text" placeholder="Seat #" ng-model="passenger.seat" required/>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <a class="btn btn-link" ng-click="addFlightPassenger()">Add passenger</a>
-                    </div>
-                </div>
-            </div>
-        </form>
+        <div class="span4">
+            <a class="btn btn-link" href="#/flights/{{trip._id}}">Add Flight</a>
+        </div>
     </div>
 </fieldset>
 

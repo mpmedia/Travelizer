@@ -6,7 +6,7 @@ class Flight
   field :airline, type: String
   field :flight_no, type: String
   field :date, type: Date
-  field :time, type: ActiveSupport::TimeWithZone
+  field :time, type: String
   field :terminal, type: String
   field :gate, type: String
 

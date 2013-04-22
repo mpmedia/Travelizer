@@ -1,0 +1,48 @@
+<ol class="breadcrumb">
+    <li>
+        <a href="#">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="#/trips">Trips</a>
+        <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="#/trips/{{trip._id}}">{{trip.name}}</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">Add a Traveller</li>
+</ol>
+<div class="page-header">
+    <h3>{{trip.name}} <small>{{trip.description}}</small></h3>
+</div>
+<fieldset>
+    <legend><i class="icon-plane"></i>&nbsp;Add a Traveller</legend>
+    <div class="row">
+        <form name="addTravellerForm">
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <input name="name" type="text" placeholder="Full Name" ng-model="traveller.name" required/>
+                    </div>
+                    <div class="controls">
+                        <input name="email" class="input-medium" type="text" placeholder="Email" ng-model="traveller.email"/>
+                        <input name="phone" class="input-medium" type="text" placeholder="Phone No" ng-model="traveller.phone"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <a class="btn btn-primary" ng-click="createTraveller(traveller)" ng-disabled="addTravellerForm.$invalid">Add</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+
+
+
+
+
+

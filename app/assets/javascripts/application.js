@@ -11,6 +11,8 @@
 //= require services/airlinesService
 //= require services/airportsService
 //= require controllers/trips
+//= require controllers/flights
+//= require controllers/travellers
 
 angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
   .config(['$httpProvider', function(provider){
@@ -20,5 +22,7 @@ angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', '
     router
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
       .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
+      .when('/flights/:trip_id', {templateUrl:'/flights/add.html', controller:FlightAddCtrl})
+      .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
       .otherwise({redirectTo: '/trips'});
   }]);
