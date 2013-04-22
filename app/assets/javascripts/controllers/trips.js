@@ -18,8 +18,10 @@ function TripsCtrl($scope, Trips, Trip) {"use strict";
     };
 }
 
-function TripShowCtrl($scope, $routeParams, Travellers, Traveller, Flights, Flight, Trip) {"use strict";
+function TripShowCtrl($scope, $routeParams, Travellers, Traveller, Flights, Flight, Trip, Airlines, Airports) {"use strict";
     $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
+    $scope.airlines = Airlines.index();
+    $scope.airports = Airports.index();
     $scope.passengers = [{name:'', ticket_no:'', seat:''}];
 
     $scope.createFlight = function(flight) {
@@ -31,6 +33,18 @@ function TripShowCtrl($scope, $routeParams, Travellers, Traveller, Flights, Flig
             $scope.trip.flights.push(flight);
             $scope.flight = '';
             $scope.passengers = [{name:'', ticket_no:'', seat:''}];
+        });
+    };
+
+    $scope.findAirline = function(query) {
+        return $.map($scope.airlines, function(airline) {
+            return airline.iata ? (airline.name + ' (' + airline.iata + ')') : (airline.name + ' (' + airline.icao + ')');
+        });
+    };
+
+    $scope.findAirport = function(query) {
+        return $.map($scope.airports, function(airport) {
+            return airport.iata ? (airport.name + ' (' + airport.iata + ')') : (airport.name + ' (' + airport.icao + ')');
         });
     };
 

@@ -61,8 +61,10 @@
                  <div class="control-group">
                      <label class="control-label">Flight Info</label>
                      <div class="controls">
-                         <input name="airport" class="input-small" type="text" placeholder="Airport" ng-model="flight.airport" required/>
-                         <input name="airline" class="input-small" type="text" placeholder="Airline" ng-model="flight.airline" required/>
+                         <input name="airport" class="input-big" type="text" placeholder="Airport" ng-model="flight.airport" bs-typeahead="findAirport" required/>
+                     </div>
+                     <div class="controls">
+                         <input name="airline" class="input-medium" type="text" placeholder="Airline" ng-model="flight.airline" bs-typeahead="findAirline" required/>
                          <input name="flight_no" class="input-mini" type="text" placeholder="Flight #" ng-model="flight.flight_no" required/>
                      </div>
                  </div>

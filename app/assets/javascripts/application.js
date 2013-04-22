@@ -8,9 +8,11 @@
 //= require services/tripsService
 //= require services/travellersService
 //= require services/flightsService
+//= require services/airlinesService
+//= require services/airportsService
 //= require controllers/trips
 
-angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', '$strap.directives'])
+angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
   .config(['$httpProvider', function(provider){
     provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   }])
