@@ -12,31 +12,26 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 1) do
-
-  create_table "trips", :force => true do |t|
-    t.string   "uuid"
+  create_table "airports", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.string   "city"
+    t.string   "country"
+    t.string   "iata"
+    t.string   "icao"
+    t.string   "lat"
+    t.string   "lon"
+    t.string   "alt"
+    t.string   "timezone"
+    t.string   "dst"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "travellers", :force => true do |t|
-    t.integer  "trip_id"
-    t.integer  "flight_id"
+  create_table "airlines", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "flights", :force => true do |t|
-    t.integer  "trip_id"
-    t.string   "airline"
-    t.string   "flight_no"
-    t.string   "depart_from"
-    t.datetime "departure_time"
-    t.string   "arrive_at"
-    t.datetime "arrival_time"
+    t.string   "iata"
+    t.string   "icao"
+    t.string   "country"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
