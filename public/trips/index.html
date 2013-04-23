@@ -6,31 +6,27 @@
     <li class="active">Trips</li>
 </ol>
 <div class="page-header">
-    <h3>{{trip.name}} <small>{{trip.description}}</small></h3>
+    <h3><i class="icon-suitcase"></i>&nbsp;Your Trips</h3>
 </div>
 <fieldset>
-    <legend><i class="icon-suitcase"></i>&nbsp;Your Trips</legend>
-    <table class="table table-striped table-hover">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <td></td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="trip in trips">
-            <td><a href="#/trips/{{trip._id}}">{{trip.name}}</a></td>
-            <td>{{trip.description}}</td>
-            <td><a class="btn btn-danger" ng-click="removeTrip(trip)"><i class="icon-trash"></i></a></td>
-        </tr>
-        <tr>
-            <form name="addTripForm">
-                <td><input name="tripname" type="text" placeholder="Europe 2013" ng-model="trip.name" required/></td>
-                <td><textarea placeholder="Backpacking through France, Italy, Spain..." ng-model='trip.description'></textarea></td>
-                <td><a class="btn btn-primary"  ng-click="create(trip)" ng-disabled="addTripForm.$invalid"><i class="icon-plus"></i></a></td>
-            </form>
-        </tr>
-        </tbody>
-    </table>
+    <div class="alert alert-info" ng-show="!trips.length">
+        <strong>Where's your next vacation?</strong>
+        Create a trip plan by clicking on the button below.
+    </div>
+    <div class="row top-buffer" ng-repeat="trip in trips">
+        <div class="span3">
+            <dl>
+                <dt><a href="#/trips/{{trip._id}}">{{trip.name}}</a></dt>
+                <dd>{{trip.description}}</dd>
+            </dl>
+        </div>
+        <div class="span3">
+            <a class="btn btn-danger btn-mini" ng-click="removeTrip(trip)"><i class="icon-trash"></i></a>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="span4">
+            <a class="btn btn-link" href="#/trips/add">Add Trip</a>
+        </div>
+    </div>
 </fieldset>

@@ -26,6 +26,7 @@ class FlightController < ApplicationController
     params[:passengers].each do |passenger|
       @flight.passengers.create(passenger)
     end
+    #flight_info = FlightStats::Flight.direct_departing_by_flight_number @flight.airline_code, @flight.flight_no, @flight.date.year, @flight.date.month, @flight.date.day
     @trip.save
     respond_with(@flight)
   end

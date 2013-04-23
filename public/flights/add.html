@@ -24,10 +24,7 @@
                  <div class="control-group">
                      <label class="control-label">Flight Info</label>
                      <div class="controls">
-                         <input name="airport" class="input-big" type="text" placeholder="Airport" ng-model="flight.airport" bs-typeahead="findAirport" required/>
-                     </div>
-                     <div class="controls">
-                         <input name="airline" class="input-medium" type="text" placeholder="Airline" ng-model="flight.airline" bs-typeahead="findAirline" required/>
+                         <input name="airline" class="input-medium" type="text" placeholder="Airline" ng-model="flight.airline_code" required/>
                          <input name="flight_no" class="input-mini" type="text" placeholder="Flight #" ng-model="flight.flight_no" required/>
                      </div>
                  </div>
@@ -38,17 +35,13 @@
                             <input name="date" class="input-small" type="text" placeholder="Date" ng-model="flight.date" data-date-format="dd/mm/yyyy" bs-datepicker required/>
                              <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
                          </div>
-                         <div class="input-append">
-                             <input name="time" class="input-mini" type="text" placeholder="Time" ng-model="flight.time" bs-timepicker required/>
-                             <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
-                         </div>
                      </div>
                  </div>
                  <div class="control-group">
-                     <label class="control-label">Terminal/Gate</label>
+                     <label class="control-label">Terminal/Gate (optional)</label>
                      <div class="controls">
-                         <input name="terminal" class="input-mini" type="text" placeholder="Terminal" ng-model="flight.terminal" required/>
-                         <input name="gate" class="input-mini" type="text" placeholder="Gate #" ng-model="flight.gate" required/>
+                         <input name="terminal" class="input-mini" type="text" placeholder="Terminal" ng-model="flight.terminal"/>
+                         <input name="gate" class="input-mini" type="text" placeholder="Gate #" ng-model="flight.gate"/>
                      </div>
                  </div>
                  <div class="control-group">

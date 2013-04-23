@@ -1,0 +1,36 @@
+<ol class="breadcrumb">
+    <li>
+        <a href="#">Home</a>
+        <span class="divider">/</span>
+    </li>
+    <li>
+        <a href="#/trips/">Trips</a>
+        <span class="divider">/</span>
+    </li>
+    <li class="active">Add a Trip</li>
+</ol>
+<div class="page-header">
+    <h3><i class="icon-suitcase"></i>&nbsp;Add a Trip</h3>
+</div>
+<fieldset>
+    <div class="row">
+        <form name="addTripForm">
+            <div class="span6">
+                <div class="control-group">
+                    <p>Give a brief title & description to your travel plans:</p>
+                    <div class="controls">
+                        <input name="tripname" type="text" placeholder="e.g Europe 2013" ng-model="trip.name" required/>
+                    </div>
+                    <div class="controls">
+                        <textarea cols="10" rows="10" placeholder="eg. Journey through France, Italy, and Spain..." ng-model='trip.description'></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <a class="btn btn-primary" ng-click="createTrip(trip)" ng-disabled="addTripForm.$invalid">Add</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>

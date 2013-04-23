@@ -20,9 +20,10 @@ angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', '
   }])
   .config(['$routeProvider', function(router){
     router
+      .when('/', {templateUrl:'/home/index.html'})
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
+      .when('/trips/add', {templateUrl:'/trips/add.html', controller:TripsAddCtrl})
       .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
       .when('/flights/:trip_id', {templateUrl:'/flights/add.html', controller:FlightAddCtrl})
-      .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
-      .otherwise({redirectTo: '/trips'});
+      .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl});
   }]);

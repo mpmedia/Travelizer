@@ -1,19 +1,21 @@
 function TripsCtrl($scope, Trips, Trip) {"use strict";
     $scope.trips = Trips.index();
 
-    $scope.create = function(trip) {
-        var tripService = new Trips(trip);
-        tripService.$create(function(trip) {
-            $scope.trips.push(trip);
-            $scope.trip = '';
-        });
-    };
-
     $scope.removeTrip = function(trip) {
         Trip.destroy({
             trip_id : trip._id
         }, function() {
             $scope.trips.splice($scope.trips.indexOf(trip), 1);
+        });
+    };
+}
+
+function TripsAddCtrl($scope, $location, Trips) {"use strict";
+    $scope.createTrip = function(trip) {
+        var tripService = new Trips(trip);
+        tripService.$create(function(trip) {
+            $scope.trip = '';
+            $location.path('/trips');
         });
     };
 }

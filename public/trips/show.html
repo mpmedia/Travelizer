@@ -46,12 +46,8 @@
     <div class="row" ng-repeat="flight in trip.flights">
         <div class="span4">
             <dl class="dl-horizontal">
-                <dt>{{flight.airport}}</dt>
-                <dd>{{flight.airline}} {{flight.flight_no}}</dd>
-                <dt>{{flight.date | date:'EEE, MMM d, y'}}</dt>
-                <dd>{{flight.time | date:'h:mm a'}}</dd>
-                <dt>Terminal {{flight.terminal}}</dt>
-                <dd>Gate {{flight.gate}}</dd>
+                <dt>Info</dt>
+                <dd>{{flight.arrival_airport}}</dd>
             </dl>
         </div>
         <div class="span5">

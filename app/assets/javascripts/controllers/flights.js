@@ -1,7 +1,6 @@
 function FlightAddCtrl($scope, $routeParams, Flights, Flight, Trip, Airlines, Airports) {"use strict";
     $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
     $scope.airlines = Airlines.index();
-    $scope.airports = Airports.index();
     $scope.passengers = [{name:'', ticket_no:'', seat:''}];
 
     $scope.createFlight = function(flight) {
@@ -18,12 +17,6 @@ function FlightAddCtrl($scope, $routeParams, Flights, Flight, Trip, Airlines, Ai
     $scope.findAirline = function(query) {
         return $.map($scope.airlines, function(airline) {
             return airline.iata ? (airline.name + ' (' + airline.iata + ')') : (airline.name + ' (' + airline.icao + ')');
-        });
-    };
-
-    $scope.findAirport = function(query) {
-        return $.map($scope.airports, function(airport) {
-            return airport.iata ? (airport.name + ' (' + airport.iata + ')') : (airport.name + ' (' + airport.icao + ')');
         });
     };
 

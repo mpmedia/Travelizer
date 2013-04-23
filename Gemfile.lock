@@ -36,6 +36,7 @@ GEM
     eventmachine (1.0.0-x86-mingw32)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    flightstats-flex (0.2.0)
     hike (1.2.1)
     i18n (0.6.4)
     journey (1.0.4)
@@ -112,6 +113,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  flightstats-flex (~> 0.2.0)
   jquery-rails
   mongoid (~> 3.0.0)
   pg
