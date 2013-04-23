@@ -17,7 +17,7 @@
         <form name="addTripForm">
             <div class="span6">
                 <div class="control-group">
-                    <p>Give a brief title & description to your travel plans:</p>
+                    <p>Give a brief title & description of your travel plans:</p>
                     <div class="controls">
                         <input name="tripname" type="text" placeholder="e.g Europe 2013" ng-model="trip.name" required/>
                     </div>
@@ -28,6 +28,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <a class="btn btn-primary" ng-click="createTrip(trip)" ng-disabled="addTripForm.$invalid">Add</a>
+                        <a class="btn" href="#/trips/">Cancel</a>
                     </div>
                 </div>
             </div>
