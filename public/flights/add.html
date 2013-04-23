@@ -50,18 +50,18 @@
                      </div>
                  </div>
              </div>
-            <div class="span8">
+            <div class="span4">
                 <div class="control-group">
                     <label class="control-label">Passenger Info</label>
                     <div class="controls" ng-repeat="passenger in passengers">
                         <input name="passenger_name" class="input-medium" type="text" placeholder="Name" ng-model="passenger.name" bs-typeahead="findFlightPassenger" required/>
-                        <input name="passenger_ticket_no" class="input-medium" type="text" placeholder="Ticket #" ng-model="passenger.ticket_no" required/>
-                        <input name="passenger_seat" class="input-mini" type="text" placeholder="Seat #" ng-model="passenger.seat" required/>
+                        <input name="passenger_seat" class="input-mini" type="text" placeholder="Seat #" ng-model="passenger.seat"/>
+                        <a class="btn btn-mini" style="margin-bottom: 10px" ng-click="removeFlightPassenger(passenger)"><i class="icon-trash"></i></a>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <a class="btn btn-link" ng-click="addFlightPassenger()">Add passenger</a>
+                        <a class="btn btn-link" ng-click="addFlightPassenger()"><i class="icon-plus"></i>&nbsp;Add passenger</a>
                     </div>
                 </div>
             </div>

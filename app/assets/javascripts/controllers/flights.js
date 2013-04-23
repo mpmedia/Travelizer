@@ -25,7 +25,7 @@ function FlightAddCtrl($scope, $routeParams, Flights, Flight, Trip, Airlines, Ai
             trip_id : $routeParams.trip_id,
             flight_id : flight._id
         }, function() {
-            $scope.trip.flights.splice($scope.trip.flights.indexOf(flight, 1));
+            $scope.trip.flights.splice($scope.trip.flights.indexOf(flight), 1);
         });
     };
 
@@ -38,6 +38,10 @@ function FlightAddCtrl($scope, $routeParams, Flights, Flight, Trip, Airlines, Ai
     $scope.addFlightPassenger = function() {
         $scope.passenger = '';
         $scope.passengers.push({name:'', ticket_no:'', seat:''});
+    };
+
+    $scope.removeFlightPassenger = function(passenger) {
+        $scope.passengers.splice($scope.passengers.indexOf(passenger), 1);
     };
 }
 
