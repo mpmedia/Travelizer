@@ -23,8 +23,22 @@ class FlightController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @flight = @trip.flights.create(params[:flight])
-    flight_info = FlightStats::Flight.direct_departing_by_flight_number @flight.airline_code, @flight.flight_no, @flight.date.year, @flight.date.month, @flight.date.day
-    @flight.departure_time = flight_info[0].departure_time
+    flight_info = FlightStats::Flight.direct_departing_by_flight_number @flight.career_code, @flight.flight_no, @flight.date.year, @flight.date.month, @flight.date.day
+    flight_info[0].flight_legs.each do |flight_leg|
+      @flight.flight_legs.create(
+          :career_code => flight_leg.carrier_fs_code,
+          :flight_no => flight_leg.flight_number,
+          :departure_airport => flight_leg.departure_airport_fs_code,
+          :departure_time => flight_leg.departure_time,
+          :departure_terminal => flight_leg.departure_terminal,
+          :arrival_airport => flight_leg.arrival_airport_fs_code,
+          :arrival_time => flight_leg.arrival_time,
+          :arrival_terminal => flight_leg.arrival_terminal,
+          :distance => flight_leg.distance_miles,
+          :flight_duration => flight_leg.flight_duration_minutes,
+          :layover_duration => flight_leg.layover_duration_minutes
+      )
+    end
     params[:passengers].each do |passenger|
       @flight.passengers.create(passenger)
     end
