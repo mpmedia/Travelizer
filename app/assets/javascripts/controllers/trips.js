@@ -9,11 +9,12 @@ function TripsCtrl($scope, Trips, Trip) {"use strict";
 }
 
 function TripsAddCtrl($scope, $location, Trips) {"use strict";
+    $scope.newTrip = '';
     $scope.createTrip = function(trip) {
         var tripService = new Trips(trip);
         tripService.$create(function(trip) {
-            $scope.trip = '';
-            $location.path('/trips');
+            $scope.trips.push(trip);
+            $location.path('/trips/'+trip._id);
         });
     };
 }

@@ -23,10 +23,11 @@ class FlightController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @flight = @trip.flights.create(params[:flight])
+    flight_info = FlightStats::Flight.direct_departing_by_flight_number @flight.airline_code, @flight.flight_no, @flight.date.year, @flight.date.month, @flight.date.day
+    @flight.departure_time = flight_info[0].departure_time
     params[:passengers].each do |passenger|
       @flight.passengers.create(passenger)
     end
-    #flight_info = FlightStats::Flight.direct_departing_by_flight_number @flight.airline_code, @flight.flight_no, @flight.date.year, @flight.date.month, @flight.date.day
     @trip.save
     respond_with(@flight)
   end
