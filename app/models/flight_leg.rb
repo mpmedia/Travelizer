@@ -4,10 +4,10 @@ class FlightLeg
   field :career_code, type: String
   field :flight_no, type: String
   field :departure_airport, type: String
-  field :departure_time, type: String
+  field :departure_time, type: Time
   field :departure_terminal, type: String
   field :arrival_airport, type: String
-  field :arrival_time, type: String
+  field :arrival_time, type: Time
   field :arrival_terminal, type: String
   field :distance, type: String
   field :flight_duration, type: String

@@ -43,33 +43,38 @@
         <strong>How you gonna get there?</strong>
         Add some flights to your trip by clicking on the button below.
     </div>
-    <div class="row" ng-repeat="flight in trip.flights">
-        <div class="span4">
-            <dl class="dl-horizontal">
-                <dt>Info</dt>
-                <dd>{{flight.arrival_airport}}</dd>
-            </dl>
+    <div ng-repeat="flight in trip.flights">
+        <div class="row">
+            <div class="span8" style="font-weight:bold; padding:3px; background-color: #EBEBEB !important;">{{flight.date | date:'fullDate'}}</div>
         </div>
-        <div class="span5">
-            <dl class="dl-horizontal">
-                <dt>Passengers</dt>
-                <dd ng-repeat="passenger in flight.passengers">{{passenger.name}} / {{passenger.seat}}</dd>
-            </dl>
+        <div class="row top-buffer" ng-repeat="leg in flight.flight_legs">
+            <div class="span2">
+                <small>LV</small>&nbsp;<strong>{{leg.departure_time | date:'shortTime'}}</strong><br/>
+                {{leg.departure_airport}}
+            </div>
+            <div class="span1">
+                <i class="icon-arrow-right"></i>
+            </div>
+            <div class="span2">
+                <small>AR</small></small>&nbsp;<strong>{{leg.arrival_time | date:'shortTime'}}</strong><br/>
+                {{leg.arrival_airport}}
+            </div>
+            <div class="span2">
+                <strong>{{leg.career_code}} {{leg.flight_no}}</strong><br/>
+                <small>{{leg.distance}}&nbsp;mi&nbsp;|&nbsp;{{leg.flight_duration}}&nbsp;mins</small>
+            </div>
+            <div class="span1">
+                <a class="btn btn-danger btn-mini" ng-click="removeFlight(flight)"><i class="icon-trash"></i></a>
+            </div>
         </div>
-        <div class="span3">
-            <a class="btn btn-danger btn-mini" ng-click="removeFlight(flight)"><i class="icon-trash"></i></a>
+        <div class="row">
+            <div class="span8" style="font-weight:bold; padding:3px; background-color: #EBEBEB !important;">{{flight.date | date:'fullDate'}}</div>
         </div>
     </div>
-    <div class="row">
+    <div class="row top-buffer">
         <div class="span4">
             <a class="btn btn-link" href="#/flights/{{trip._id}}"><i class="icon-plus"></i>&nbsp;Add Flight</a>
         </div>
     </div>
 </fieldset>
-
-
-
-
-
-
 
