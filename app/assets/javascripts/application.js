@@ -10,6 +10,7 @@
 //= require services/flightsService
 //= require services/airlinesService
 //= require services/airportsService
+//= require controllers/app
 //= require controllers/trips
 //= require controllers/flights
 //= require controllers/travellers

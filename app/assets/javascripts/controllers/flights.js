@@ -1,5 +1,4 @@
-function FlightAddCtrl($scope, $routeParams, Flights, Flight, Trip, Airlines, Airports) {"use strict";
-    $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
+function FlightAddCtrl($scope, $routeParams, Flights, Flight, Airlines) {"use strict";
     $scope.airlines = Airlines.index();
     $scope.passengers = [{name:'', ticket_no:'', seat:''}];
 
@@ -8,7 +7,7 @@ function FlightAddCtrl($scope, $routeParams, Flights, Flight, Trip, Airlines, Ai
         flight['passengers'] = $scope.passengers;
         var flightService = new Flights(flight);
         flightService.$create(function(flight) {
-            $scope.trip.flights.push(flight);
+            $scope.$parent.trip.flights.push(flight);
             $scope.flight = '';
             $scope.passengers = [{name:'', ticket_no:'', seat:''}];
         });
@@ -25,7 +24,7 @@ function FlightAddCtrl($scope, $routeParams, Flights, Flight, Trip, Airlines, Ai
             trip_id : $routeParams.trip_id,
             flight_id : flight._id
         }, function() {
-            $scope.trip.flights.splice($scope.trip.flights.indexOf(flight), 1);
+            $scope.$parent.trip.flights.splice($scope.$parent.trip.flights.indexOf(flight), 1);
         });
     };
 

@@ -1,11 +1,9 @@
 function TripsCtrl($scope, Trips, Trip) {"use strict";
-    $scope.trips = Trips.index();
-
     $scope.removeTrip = function(trip) {
         Trip.destroy({
             trip_id : trip._id
         }, function() {
-            $scope.trips.splice($scope.trips.indexOf(trip), 1);
+            $scope.$parent.trips.splice($scope.$parent.trips.indexOf(trip), 1);
         });
     };
 }
@@ -21,14 +19,16 @@ function TripsAddCtrl($scope, $location, Trips) {"use strict";
 }
 
 function TripShowCtrl($scope, $routeParams, Traveller, Flight, Trip) {"use strict";
-    $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
+    if($scope.$parent.trip == '' || $scope.$parent.trip._id != $routeParams.trip_id) {
+        $scope.$parent.trip = Trip.show({trip_id : $routeParams.trip_id});
+    }
 
     $scope.removeFlight = function(flight) {
         Flight.destroy({
             trip_id : $routeParams.trip_id,
             flight_id : flight._id
         }, function() {
-            $scope.trip.flights.splice($scope.trip.flights.indexOf(flight), 1);
+            $scope.$parent.trip.flights.splice($scope.$parent.trip.flights.indexOf(flight), 1);
         });
     };
 
@@ -37,7 +37,7 @@ function TripShowCtrl($scope, $routeParams, Traveller, Flight, Trip) {"use stric
             trip_id : $routeParams.trip_id,
             traveller_id : traveller._id
         }, function() {
-            $scope.trip.travellers.splice($scope.trip.travellers.indexOf(traveller), 1);
+            $scope.$parent.trip.travellers.splice($scope.$parent.trip.travellers.indexOf(traveller), 1);
         });
     };
 }

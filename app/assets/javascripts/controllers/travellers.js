@@ -1,6 +1,4 @@
-function TravellerAddCtrl($scope, $routeParams, $location, Travellers, Trip) {"use strict";
-    $scope.trip = Trip.show({trip_id : $routeParams.trip_id});
-
+function TravellerAddCtrl($scope, $routeParams, $location, Travellers) {"use strict";
     $scope.createTraveller = function(traveller) {
         traveller['trip_id'] = $routeParams.trip_id;
         var travellerService = new Travellers(traveller);
