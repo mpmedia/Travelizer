@@ -19,11 +19,21 @@
         Add some travellers to your trip (including yourself) by clicking on the button below.
     </div>
     <div class="row top-buffer" ng-repeat="traveller in trip.travellers">
-        <div class="span3">
+        <div class="span1">
+            <img src="http://placehold.it/64x64">
+        </div>
+        <div class="span2">
             {{traveller.name}}
         </div>
-        <div class="span3">
-            <a class="btn btn-danger btn-mini" ng-click="removeTraveller(traveller)"><i class="icon-trash"></i></a>
+        <div class="span1">
+            <div class="btn-group">
+                <a class="btn" data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a><i class="icon-pencil"></i> Edit</a></li>
+                    <li><a ng-click="removeTraveller(traveller)"><i class="icon-trash"></i> Delete</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="row top-buffer">
@@ -52,24 +62,35 @@
                 <small>LV</small>&nbsp;<strong>{{leg.departure_time | date:'shortTime'}}</strong><br/>
                 {{leg.departure_airport}}
             </div>
-            <div class="span1">
-                <i class="icon-arrow-right"></i>
-            </div>
             <div class="span2">
                 <small>AR</small></small>&nbsp;<strong>{{leg.arrival_time | date:'shortTime'}}</strong><br/>
                 {{leg.arrival_airport}}
             </div>
-            <div class="span2">
+            <div class="span1">
                 <strong>{{leg.career_code}} {{leg.flight_no}}</strong><br/>
-                <small>{{leg.distance}}&nbsp;mi&nbsp;|&nbsp;{{leg.flight_duration}}&nbsp;mins</small>
+                <i class="icon-road"></i>&nbsp;<small>{{leg.distance}}&nbsp;mi</small><br/>
+                <i class="icon-time"></i>&nbsp;<small>{{leg.flight_duration}}&nbsp;mins</small><br/>
+            </div>
+            <div class="span2">
+                <i class="icon-user"></i>&nbsp;<small ng-repeat="passenger in flight.passengers">{{passenger.name}} | {{passenger.seat}}<br/></small>
             </div>
             <div class="span1">
-                <a class="btn btn-danger btn-mini" ng-click="removeFlight(flight)"><i class="icon-trash"></i></a>
+                <div class="btn-group">
+                    <a class="btn" data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a><i class="icon-pencil"></i> Edit</a></li>
+                        <li><a ng-click="removeFlight(flight)"><i class="icon-trash"></i> Delete</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="span8" style="font-weight:bold; padding:3px; background-color: #EBEBEB !important;">{{flight.date | date:'fullDate'}}</div>
+        <div class="row top-buffer">
+            <div class="span8"></div>
         </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="span8" style="font-weight:bold; padding:3px; background-color: #EBEBEB !important;"></div>
     </div>
     <div class="row top-buffer">
         <div class="span4">
