@@ -15,7 +15,7 @@
 //= require controllers/flights
 //= require controllers/travellers
 
-angular.module('sojo', ['tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
+angular.module('travelizer', ['tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
   .config(['$httpProvider', function(provider){
     provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   }])
