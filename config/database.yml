@@ -20,4 +20,4 @@ production:
   encoding: utf8
   database: sojo_production
   username: sojo
-  password:
+  password: 4sojo!
