@@ -22,6 +22,8 @@ end
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem "flightstats-flex", "~> 0.2.0"
+gem 'nokogiri'
+gem 'devise'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
