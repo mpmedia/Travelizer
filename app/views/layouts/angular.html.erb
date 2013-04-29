@@ -22,7 +22,9 @@
 
     <div class="container-narrow">
         <%= bootstrap_flash %>
-        <%= yield %>
+        <div ng-view></div>
     </div>
+
+    <%= javascript_include_tag "application" %>
 </body>
 </html>

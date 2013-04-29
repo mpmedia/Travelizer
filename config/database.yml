@@ -1,9 +1,9 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: sojo_development
-  username: sojo
-  password: 4sojo!
+  database: travelizer_development
+  username: travelizer
+  password: 4travelizer!
 
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
@@ -11,13 +11,13 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  database: sojo_test
-  username: sojo
-  password: 4sojo!
+  database: travelizer_test
+  username: travelizer
+  password: 4travelizer!
 
 production:
   adapter: postgresql
   encoding: utf8
-  database: sojo_production
-  username: sojo
-  password: 4sojo!
+  database: travelizer_production
+  username: travelizer
+  password: 4travelizer!
