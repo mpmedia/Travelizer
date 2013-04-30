@@ -16,15 +16,17 @@
 //= require controllers/travellers
 
 angular.module('travelizer', ['tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
-  .config(['$httpProvider', function(provider){
-    provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  .config(['$httpProvider', function($httpProvider){
+        $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   }])
-  .config(['$routeProvider', function(router){
-    router
+  .config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider){
+    $routeProvider
       .when('/', {templateUrl:'/home/index.html'})
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
       .when('/trips/add', {templateUrl:'/trips/add.html', controller:TripsAddCtrl})
       .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
       .when('/flights/:trip_id', {templateUrl:'/flights/add.html', controller:FlightAddCtrl})
       .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl});
+
+    //$locationProvider.html5Mode(true);
   }]);
