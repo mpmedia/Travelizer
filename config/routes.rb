@@ -59,7 +59,11 @@ Travelizer::Application.routes.draw do
   end
   root :to => "home#index"
   devise_for :users
-  resources :users
+  devise_scope :user do
+    post 'login' => 'sessions#create', :as => 'login'
+    post 'logout' => 'sessions#destroy', :as => 'logout'
+    get 'current_user' => 'sessions#show_current_user', :as => 'show_current_user'
+  end
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

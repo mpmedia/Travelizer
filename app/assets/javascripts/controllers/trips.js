@@ -1,4 +1,5 @@
-function TripsCtrl($scope, Trip) {"use strict";
+function TripsCtrl($scope, Trip, Trips) {"use strict";
+    $scope.$parent.trips = Trips.index();
     $scope.removeTrip = function(trip) {
         Trip.destroy({
             trip_id : trip._id
