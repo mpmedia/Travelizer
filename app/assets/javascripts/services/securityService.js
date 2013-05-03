@@ -52,6 +52,17 @@ angular.module('securityService', [])
                 tokenHandler.set(response.data.auth_token);
                 service.currentUser = response.data.user;
                 if (service.isAuthenticated()) {
+                    $location.path(response.data.redirect);
+                }
+            });
+        },
+
+        register: function(email, password, confirm_password) {
+            var request = $http.post('/login', {user: {email: email, password: password, confirm_password: confirm_password} });
+            return request.then(function(response) {
+                tokenHandler.set(response.data.auth_token);
+                service.currentUser = response.data.user;
+                if (service.isAuthenticated()) {
                     //Go back to where you were
                 }
             });

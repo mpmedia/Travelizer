@@ -15,6 +15,7 @@
 //= require controllers/trips
 //= require controllers/flights
 //= require controllers/travellers
+//= require controllers/users
 
 angular.module('travelizer', ['securityService', 'tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
   .config(['$httpProvider', function($httpProvider){
@@ -47,10 +48,12 @@ angular.module('travelizer', ['securityService', 'tripsService', 'travellersServ
       .when('/trips/add', {templateUrl:'/trips/add.html', controller:TripsAddCtrl})
       .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
       .when('/flights/:trip_id', {templateUrl:'/flights/add.html', controller:FlightAddCtrl})
-      .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl});
+      .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
+      .when('/users/login', {templateUrl:'/users/login.html', controller:UsersCtrl})
+      .when('/users/register', {templateUrl:'/users/register.html', controller:UsersCtrl});
   }])
   .run(['Security', function(security) {
         // Get the current user when the application starts
         // (in case they are still logged in from a previous session)
-        security.requestCurrentUser();
+        //security.requestCurrentUser();
   }]);

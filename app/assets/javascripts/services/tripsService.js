@@ -4,7 +4,7 @@ angular.module('tripsService', ['ngResource', 'securityService'])
       index: { method: 'GET', isArray: true},
       create: { method: 'POST' }
     });
-    resource = tokenHandler.wrapActions(resource, ['index', 'create']);
+    //resource = tokenHandler.wrapActions(resource, ['index', 'create']);
     return resource;
   }])
   .factory('Trip', function($resource){
