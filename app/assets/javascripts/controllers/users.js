@@ -3,15 +3,34 @@ function UsersCtrl($scope, Session) {"use strict";
         $scope.authError = null;
 
         Session.login(user.email, user.password)
-        .then(function(loggedIn) {
-            if (!loggedIn) {
+        .then(function(response) {
+            if (!response) {
                 $scope.authError = 'Credentials are not valid';
             } else {
                 $scope.authError = 'Success!';
             }
-        }, function(x) {
-            $scope.authError = 'Login Server offline, please try later';
+        }, function(response) {
+            $scope.authError = 'Server offline, please try later';
         });
+    };
+
+    $scope.logout = function(user) {
+
+    };
+
+    $scope.register = function(user) {
+        $scope.authError = null;
+
+        Session.register(user.email, user.password)
+            .then(function(response) {
+               console.log(response);
+            }, function(response) {
+                var errors = '';
+                $.each(response.data.errors, function(index, value) {
+                    errors += index.substr(0,1).toUpperCase()+index.substr(1) + ' ' + value + ''
+                });
+                $scope.authError = errors;
+            });
     };
 }
 

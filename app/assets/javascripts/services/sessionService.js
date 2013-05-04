@@ -9,13 +9,11 @@ angular.module('sessionService', [])
             login: function(email, password) {
                 return $http.post('/login', {user: {email: email, password: password} })
                     .then(function(response) {
-                        if(response.data.success) {
-                            service.currentUser = response.data.user;
-                            if (service.isAuthenticated()) {
-                                //$location.path(response.data.redirect);
-                            }
+                        service.currentUser = response.data.user;
+                        if (service.isAuthenticated()) {
+                            //$location.path(response.data.redirect);
                         }
-                });
+                    });
             },
 
             logout: function(redirectTo) {
@@ -25,6 +23,15 @@ angular.module('sessionService', [])
                 });
             },
 
+            register: function(email, password, confirm_password) {
+                return $http.post('/users.json', {user: {email: email, password: password, confirm_password: confirm_password} })
+                .then(function(response) {
+                    service.currentUser = response.data.user;
+                    if (service.isAuthenticated()) {
+                        //Go back to where you were
+                    }
+                });
+            },
             requestCurrentUser: function() {
                 if (service.isAuthenticated()) {
                     return $q.when(service.currentUser);
