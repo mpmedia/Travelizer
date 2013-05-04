@@ -3,7 +3,7 @@ function AppCtrl($scope, $location, Trips) {"use strict";
     $scope.trip = '';
 
     $scope.$on('event:unauthorized', function(event) {
-        $location.path('/users/login');
+        console.log('unauthorized');
     });
     $scope.$on('event:authenticated', function(event) {
         console.log('authenticated');

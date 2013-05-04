@@ -3,4 +3,4 @@ angular.module('airportsService', ['ngResource'])
     return $resource('airport.json', {}, {
         index: { method: 'GET', isArray: true }
     });
-  })
+  });

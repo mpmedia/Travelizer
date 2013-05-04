@@ -5,7 +5,7 @@
 //= require bootstrap-timepicker
 //= require angular-strap.min
 //= require angular-resource
-//= require services/securityService
+//= require services/sessionService
 //= require services/tripsService
 //= require services/travellersService
 //= require services/flightsService
@@ -17,20 +17,20 @@
 //= require controllers/travellers
 //= require controllers/users
 
-angular.module('travelizer', ['securityService', 'tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
+angular.module('travelizer', ['sessionService', 'tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
   .config(['$httpProvider', function($httpProvider){
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 
-        var interceptor = ['$rootScope', '$q', function(scope, $q) {
+        var interceptor = ['$location', '$rootScope', '$q', function($location, $rootScope, $q) {
             function success(response) {
                 return response
             };
 
             function error(response) {
                 if (response.status == 401) {
-                    var deferred = $q.defer();
-                    scope.$broadcast('event:unauthorized');
-                    return deferred.promise;
+                    $rootScope.$broadcast('event:unauthorized');
+                    $location.path('/users/login');
+                    return response;
                 };
                 return $q.reject(response);
             };
@@ -52,8 +52,8 @@ angular.module('travelizer', ['securityService', 'tripsService', 'travellersServ
       .when('/users/login', {templateUrl:'/users/login.html', controller:UsersCtrl})
       .when('/users/register', {templateUrl:'/users/register.html', controller:UsersCtrl});
   }])
-  .run(['Security', function(security) {
+  .run(['Session', function(session) {
         // Get the current user when the application starts
         // (in case they are still logged in from a previous session)
-        //security.requestCurrentUser();
+        //session.requestCurrentUser();
   }]);
