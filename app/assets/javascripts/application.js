@@ -41,7 +41,7 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
         }];
         $httpProvider.responseInterceptors.push(interceptor);
   }])
-  .config(['$routeProvider', '$httpProvider', function($routeProvider){
+  .config(['$routeProvider', function($routeProvider){
     $routeProvider
       .when('/', {templateUrl:'/home/index.html'})
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
@@ -51,9 +51,4 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
       .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
       .when('/users/login', {templateUrl:'/users/login.html', controller:UsersCtrl})
       .when('/users/register', {templateUrl:'/users/register.html', controller:UsersCtrl});
-  }])
-  .run(['Session', function(session) {
-        // Get the current user when the application starts
-        // (in case they are still logged in from a previous session)
-        //session.requestCurrentUser();
   }]);
