@@ -5,6 +5,7 @@
 //= require bootstrap-timepicker
 //= require angular-strap.min
 //= require angular-resource
+//= require gmap-places
 //= require services/sessionService
 //= require services/tripsService
 //= require services/travellersService
@@ -51,4 +52,22 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
       .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
       .when('/users/login', {templateUrl:'/users/login.html', controller:UsersCtrl})
       .when('/users/register', {templateUrl:'/users/register.html', controller:UsersCtrl});
-  }]);
+  }])
+    .directive('googleplace', function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, model) {
+                var options = {
+                    types: ['(regions)']
+                };
+                scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+
+                google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
+                    //console.log(scope.gPlace.getPlace().geometry.location);
+                    scope.$apply(function() {
+                        model.$setViewValue(element.val());
+                    });
+                });
+            }
+        };
+    });

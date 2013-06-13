@@ -14,12 +14,12 @@
 </div>
 <fieldset>
     <div class="row">
-        <form name="addTripForm">
+        <form name="addTripForm" class="form-vertical">
             <div class="span6">
+                <p>Enter some information about your travel plans:</p>
                 <div class="control-group">
-                    <p>Give a brief title & description of your travel plans:</p>
                     <div class="controls">
-                        <input name="tripname" type="text" placeholder="e.g Europe 2013" ng-model="newTrip.name" required/>
+                        <input name="tripname" type="text" placeholder="e.g Summer Vacation 2013" ng-model="newTrip.name" required/>
                     </div>
                     <div class="controls">
                         <div class="input-append">
@@ -33,7 +33,10 @@
                         </div>
                     </div>
                     <div class="controls">
-                        <textarea name="tripdescription" cols="10" rows="10" placeholder="eg. Journey through France, Italy, and Spain..." ng-model='newTrip.description'></textarea>
+                        <input name="triplocation" type="text"  ng-model='newTrip.location' googleplace/>
+                    </div>
+                    <div class="controls">
+                        <textarea name="tripdescription" cols="10" rows="10" placeholder="eg. Journey through Europe with La Familia..." ng-model='newTrip.description'></textarea>
                     </div>
                 </div>
                 <div class="control-group">

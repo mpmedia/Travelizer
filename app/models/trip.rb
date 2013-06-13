@@ -5,6 +5,7 @@ class Trip
   field :name, type: String
   field :start, type: Date
   field :end, type: Date
+  field :location, type: String
   field :description, type: String
 
   embeds_many :flights
