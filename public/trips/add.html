@@ -22,6 +22,17 @@
                         <input name="tripname" type="text" placeholder="e.g Europe 2013" ng-model="newTrip.name" required/>
                     </div>
                     <div class="controls">
+                        <div class="input-append">
+                            <input name="tripstart" class="input-small" type="text" placeholder="Date" ng-model="newTrip.start" data-date-format="dd/mm/yyyy" bs-datepicker required/>
+                            <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+                        </div>
+                        to
+                        <div class="input-append">
+                            <input name="tripend" class="input-small" type="text" placeholder="Date" ng-model="newTrip.end" data-date-format="dd/mm/yyyy" bs-datepicker required/>
+                            <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+                        </div>
+                    </div>
+                    <div class="controls">
                         <textarea name="tripdescription" cols="10" rows="10" placeholder="eg. Journey through France, Italy, and Spain..." ng-model='newTrip.description'></textarea>
                     </div>
                 </div>
