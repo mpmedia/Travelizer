@@ -171,7 +171,6 @@ body {
 .cbp_tmtimeline > li .cbp_tmicon {
     width: 40px;
     height: 40px;
-    font-family: 'ecoico';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -189,22 +188,6 @@ body {
     left: 20%;
     top: 0;
     margin: 0 0 0 -25px;
-}
-
-.cbp_tmicon-phone:before {
-    content: "\e000";
-}
-
-.cbp_tmicon-screen:before {
-    content: "\e001";
-}
-
-.cbp_tmicon-mail:before {
-    content: "\e002";
-}
-
-.cbp_tmicon-earth:before {
-    content: "\e003";
 }
 
 /* Example Media Queries */

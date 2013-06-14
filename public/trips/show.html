@@ -103,11 +103,11 @@
     <legend><i class="icon-calendar"></i>&nbsp;Timeline</legend>
     <ul class="cbp_tmtimeline">
         <li ng-repeat="day in trip.days">
-            <time class="cbp_tmtime" datetime="{{day.date}}"><span>{{day.date}}</span><span>Day {{$index+1}}</span></time>
-            <div class="cbp_tmicon cbp_tmicon-phone"></div>
+            <time class="cbp_tmtime" datetime="{{day.date}}"><span>{{day.date}}</span><span></span></time>
+            <i class="cbp_tmicon icon-cog"></i>
             <div class="cbp_tmlabel">
-                <h2>Ricebean black-eyed pea</h2>
-                <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong. Plantain salad beetroot bunya nuts black-eyed pea collard greens radish water spinach gourd chicory prairie turnip avocado sierra leone bologi.</p>
+                <h2>Day {{$index+1}}</h2>
+                <div contenteditable="true">{{day.notes}}<span ng-show="!day.notes" style="font-style: italic; color: #EBEBEB">Your notes</span></div>
             </div>
         </li>
     </ul>
