@@ -9,16 +9,12 @@
 //= require services/sessionService
 //= require services/tripsService
 //= require services/travellersService
-//= require services/flightsService
-//= require services/airlinesService
-//= require services/airportsService
 //= require controllers/app
 //= require controllers/trips
-//= require controllers/flights
 //= require controllers/travellers
 //= require controllers/users
 
-angular.module('travelizer', ['sessionService', 'tripsService', 'travellersService', 'flightsService', 'airlinesService', 'airportsService', '$strap.directives'])
+angular.module('travelizer', ['sessionService', 'tripsService', 'travellersService', '$strap.directives'])
   .config(['$httpProvider', function($httpProvider){
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 
@@ -48,12 +44,11 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
       .when('/trips/add', {templateUrl:'/trips/add.html', controller:TripsAddCtrl})
       .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
-      .when('/flights/:trip_id', {templateUrl:'/flights/add.html', controller:FlightAddCtrl})
       .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
       .when('/users/login', {templateUrl:'/users/login.html', controller:UsersCtrl})
       .when('/users/register', {templateUrl:'/users/register.html', controller:UsersCtrl});
   }])
-    .directive('googlePlaces', function() {
+    .directive('googleplaces', function() {
         return {
             require: 'ngModel',
             link: function(scope, element, attrs, model) {
@@ -63,8 +58,9 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
                 scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
 
                 google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
-                    //console.log(scope.gPlace.getPlace().geometry.location);
+                    //console.log(scope.gPlace.getPlace());
                     scope.$apply(function() {
+                        console.log(model);
                         model.$setViewValue(element.val());
                     });
                 });

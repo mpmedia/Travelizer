@@ -21,7 +21,6 @@ end
 
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
-gem "flightstats-flex", "~> 0.2.0"
 gem 'nokogiri'
 gem 'devise'
 #gem 'factual-api'

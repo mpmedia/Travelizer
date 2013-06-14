@@ -20,19 +20,10 @@ function TripsAddCtrl($scope, $location, Trips) {"use strict";
     };
 }
 
-function TripShowCtrl($scope, $routeParams, Traveller, Flight, Trip) {"use strict";
+function TripShowCtrl($scope, $routeParams, Traveller, Trip) {"use strict";
     if($scope.$parent.trip == '' || $scope.$parent.trip._id != $routeParams.trip_id) {
         $scope.$parent.trip = Trip.show({trip_id : $routeParams.trip_id});
     }
-
-    $scope.removeFlight = function(flight) {
-        Flight.destroy({
-            trip_id : $routeParams.trip_id,
-            flight_id : flight._id
-        }, function() {
-            $scope.$parent.trip.flights.splice($scope.$parent.trip.flights.indexOf(flight), 1);
-        });
-    };
 
     $scope.removeTraveller = function(traveller) {
         Traveller.destroy({

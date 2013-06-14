@@ -12,7 +12,6 @@
 <div class="page-header">
     <h3>{{trip.name}} <small>{{trip.description}}</small></h3>
 </div>
-
 <fieldset>
     <legend><i class="icon-group"></i>&nbsp;Travellers</legend>
     <div class="alert alert-info" ng-show="!trip.travellers.length">
@@ -48,57 +47,6 @@
         <p>&nbsp;</p>
     </div>
 </div>
-<fieldset>
-    <legend><i class="icon-plane"></i>&nbsp;Flights</legend>
-    <div class="alert alert-info" ng-show="!trip.flights.length">
-        <strong>How you gonna get there?</strong>
-        Add some flights to your trip by clicking on the button below.
-    </div>
-    <div ng-repeat="flight in trip.flights">
-        <div class="row">
-            <div class="span8" style="font-weight:bold; padding:3px; background-color: #EBEBEB !important;">{{flight.date | date:'fullDate'}}</div>
-        </div>
-        <div class="row top-buffer" ng-repeat="leg in flight.flight_legs">
-            <div class="span2">
-                <small>LV</small>&nbsp;<strong>{{leg.departure_time | date:'shortTime'}}</strong><br/>
-                {{leg.departure_airport}}
-            </div>
-            <div class="span2">
-                <small>AR</small></small>&nbsp;<strong>{{leg.arrival_time | date:'shortTime'}}</strong><br/>
-                {{leg.arrival_airport}}
-            </div>
-            <div class="span1">
-                <strong>{{leg.career_code}} {{leg.flight_no}}</strong><br/>
-                <i class="icon-road"></i>&nbsp;<small>{{leg.distance}}&nbsp;mi</small><br/>
-                <i class="icon-time"></i>&nbsp;<small>{{leg.flight_duration}}&nbsp;mins</small><br/>
-            </div>
-            <div class="span2">
-                <i class="icon-user"></i>&nbsp;<small ng-repeat="passenger in flight.passengers">{{passenger.name}} | {{passenger.seat}}<br/></small>
-            </div>
-            <div class="span1">
-                <div class="btn-group">
-                    <a class="btn" data-toggle="dropdown" href="#"><i class="icon-cog"></i></a>
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a><i class="icon-pencil"></i> Edit</a></li>
-                        <li><a ng-click="removeFlight(flight)"><i class="icon-trash"></i> Delete</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row top-buffer">
-            <div class="span8"></div>
-        </div>
-    </div>
-    <div class="row top-buffer" ng-show="trip.flights.length">
-        <div class="span8" style="font-weight:bold; padding:3px; background-color: #EBEBEB !important;"></div>
-    </div>
-    <div class="row top-buffer">
-        <div class="span4">
-            <a class="btn btn-link" href="#/flights/{{trip._id}}"><i class="icon-plus"></i>&nbsp;Add Flight</a>
-        </div>
-    </div>
-</fieldset>
 <fieldset>
     <legend><i class="icon-calendar"></i>&nbsp;Timeline</legend>
     <ul class="cbp_tmtimeline">
