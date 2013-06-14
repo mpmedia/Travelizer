@@ -8,6 +8,7 @@ class Trip
   field :location, type: String
   field :description, type: String
 
+  embeds_many :days
   embeds_many :flights
   embeds_many :travellers
 end

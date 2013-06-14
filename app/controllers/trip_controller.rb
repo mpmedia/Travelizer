@@ -24,6 +24,10 @@ class TripController < ApplicationController
 
   def create
     @trip = Trip.create(params[:trip])
+    days = @trip.end.mjd - @trip.start.mjd
+    days.times do |day|
+      @trip.days.create(:date => @trip.start + day)
+    end
     @trip.save
     respond_with(@trip)
   end
