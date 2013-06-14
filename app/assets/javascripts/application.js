@@ -53,7 +53,7 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
       .when('/users/login', {templateUrl:'/users/login.html', controller:UsersCtrl})
       .when('/users/register', {templateUrl:'/users/register.html', controller:UsersCtrl});
   }])
-    .directive('googleplace', function() {
+    .directive('googlePlaces', function() {
         return {
             require: 'ngModel',
             link: function(scope, element, attrs, model) {
