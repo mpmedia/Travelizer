@@ -6,6 +6,7 @@ class Trip
   field :start, type: Date
   field :end, type: Date
   field :location, type: String
+  field :location_lonlat, type: String
   field :description, type: String
 
   embeds_many :days

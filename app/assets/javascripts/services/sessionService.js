@@ -12,6 +12,7 @@ angular.module('sessionService', [])
                         service.currentUser = response.data.user;
                         if (service.isAuthenticated()) {
                             //$location.path(response.data.redirect);
+                            $location.path('/trips');
                         }
                     });
             },
@@ -26,9 +27,9 @@ angular.module('sessionService', [])
             register: function(email, password, confirm_password) {
                 return $http.post('/users.json', {user: {email: email, password: password, confirm_password: confirm_password} })
                 .then(function(response) {
-                    service.currentUser = response.data.user;
+                    service.currentUser = response.data;
                     if (service.isAuthenticated()) {
-                        //Go back to where you were
+                        $location.path('/trips');
                     }
                 });
             },
