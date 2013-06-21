@@ -11,28 +11,24 @@
         <a href="#/{{trip._id}}">{{trip.name}}</a>
         <span class="divider">/</span>
     </li>
-    <li class="active">Add a Traveller</li>
+    <li class="active">Plan Your Day</li>
 </ol>
 <div class="page-header">
     <h3>{{trip.name}} <small>{{trip.description}}</small></h3>
 </div>
 <fieldset>
-    <legend><i class="icon-group"></i>&nbsp;Who's going?</legend>
+    <legend><i class="icon-group"></i>&nbsp;Plan Your Day</legend>
     <div class="row">
-        <form name="addTravellerForm">
+        <form name="updateDayForm">
             <div class="span4">
                 <div class="control-group">
                     <div class="controls">
-                        <input name="name" type="text" placeholder="Full Name" ng-model="traveller.name" required/>
-                    </div>
-                    <div class="controls">
-                        <input name="email" class="input-medium" type="text" placeholder="Email" ng-model="traveller.email"/>
-                        <input name="phone" class="input-medium" type="text" placeholder="Phone No" ng-model="traveller.phone"/>
+                        <textarea name="notes" type="text" placeholder="Your notes" ng-model="day.notes"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <a class="btn btn-primary" ng-click="createTraveller(traveller)" ng-disabled="addTravellerForm.$invalid">Add</a>
+                        <a class="btn btn-primary" ng-click="updateDay(day)" ng-disabled="updateDayForm.$invalid">Update</a>
                         <a class="btn" href="#/{{trip._id}}">Cancel</a>
                     </div>
                 </div>

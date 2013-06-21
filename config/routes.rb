@@ -15,9 +15,7 @@ Travelizer::Application.routes.draw do
   resources :home
   resources :trip
   resources :traveller
-  resources :flight
-  resources :airline
-  resources :airport
+  resources :day
   # Sample resource route with options:
   #   resources :products do
   #     member do

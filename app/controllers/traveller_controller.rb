@@ -1,11 +1,12 @@
 class TravellerController < ApplicationController
   respond_to :json 
   def index
-    respond_with(@travellers = Traveller.all)
+    respond_with({})
   end
 
   def show
-    @traveller = Traveller.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
+    @traveller = @trip.travellers.find(params[:id])
     respond_with(@traveller)
   end
 

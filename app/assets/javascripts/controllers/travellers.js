@@ -5,7 +5,7 @@ function TravellerAddCtrl($scope, $routeParams, $location, Travellers) {"use str
         travellerService.$create(function(traveller) {
             $scope.traveller = '';
             $scope.$parent.trip.travellers.push(traveller);
-            $location.path('/trips/' + $routeParams.trip_id);
+            $location.path('/' + $routeParams.trip_id);
         });
     };
 }

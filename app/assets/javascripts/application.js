@@ -8,12 +8,14 @@
 //= require services/sessionService
 //= require services/tripsService
 //= require services/travellersService
+//= require services/daysService
 //= require controllers/app
 //= require controllers/trips
 //= require controllers/travellers
+//= require controllers/days
 //= require controllers/users
 
-angular.module('travelizer', ['sessionService', 'tripsService', 'travellersService', '$strap.directives'])
+angular.module('travelizer', ['sessionService', 'tripsService', 'travellersService', 'daysService', '$strap.directives'])
   .config(['$httpProvider', function($httpProvider){
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 
@@ -42,8 +44,9 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
       .when('/', {templateUrl:'/home/index.html'})
       .when('/trips', {templateUrl:'/trips/index.html', controller:TripsCtrl})
       .when('/trips/add', {templateUrl:'/trips/add.html', controller:TripsAddCtrl})
-      .when('/trips/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
-      .when('/travellers/:trip_id', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
+      .when('/:trip_id', {templateUrl:'/trips/show.html', controller:TripShowCtrl})
+      .when('/:trip_id/travellers/add', {templateUrl:'/travellers/add.html', controller:TravellerAddCtrl})
+      .when('/:trip_id/days/edit/:day_id', {templateUrl:'/days/edit.html', controller:DayUpdateCtrl})
       .when('/users/login', {templateUrl:'/users/login.html', controller:UsersCtrl})
       .when('/users/register', {templateUrl:'/users/register.html', controller:UsersCtrl});
   }])

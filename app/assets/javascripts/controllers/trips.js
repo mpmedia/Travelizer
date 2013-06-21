@@ -15,7 +15,7 @@ function TripsAddCtrl($scope, $location, Trips) {"use strict";
         var tripService = new Trips(trip);
         tripService.$create(function(trip) {
             $scope.trips.push(trip);
-            $location.path('/trips/'+trip._id);
+            $location.path('/'+trip._id);
         });
     };
 }

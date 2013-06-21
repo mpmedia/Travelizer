@@ -20,7 +20,7 @@
     </div>
     <div class="row top-buffer" ng-repeat="traveller in trip.travellers">
         <div class="span1">
-            <img src="http://placehold.it/64x64">
+            <img src="http://lorempixel.com/100/100/people/{{$index+1}}">
         </div>
         <div class="span2">
             {{traveller.name}}
@@ -38,7 +38,7 @@
     </div>
     <div class="row top-buffer">
         <div class="span4">
-            <a class="btn btn-link" href="#/travellers/{{trip._id}}"><i class="icon-plus"></i>&nbsp;Add Traveller</a>
+            <a class="btn btn-link" href="#/{{trip._id}}/travellers/add"><i class="icon-plus"></i>&nbsp;Add Traveller</a>
         </div>
     </div>
 </fieldset>
@@ -49,13 +49,14 @@
 </div>
 <fieldset>
     <legend><i class="icon-calendar"></i>&nbsp;Timeline</legend>
-    <ul class="cbp_tmtimeline">
-        <li ng-repeat="day in trip.days">
-            <time class="cbp_tmtime" datetime="{{day.date}}"><span>{{day.date}}</span><span></span></time>
-            <i class="cbp_tmicon icon-cog"></i>
-            <div class="cbp_tmlabel">
-                <h2>Day {{$index+1}}</h2>
-                <div contenteditable="true">{{day.notes}}<span ng-show="!day.notes" style="font-style: italic; color: #EBEBEB">Your notes</span></div>
+    <ul class="thumbnails">
+        <li class="span4" ng-repeat="day in trip.days">
+            <div class="thumbnail">
+                <img src="http://lorempixel.com/500/100/city/{{$index+1}}">
+                <h3>Day {{$index+1}}</h3>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p>{{day.notes}}</p>
+                <p><a href="#/{{trip._id}}/days/edit/{{day._id}}" class="btn btn-primary">Edit</a></p>
             </div>
         </li>
     </ul>
