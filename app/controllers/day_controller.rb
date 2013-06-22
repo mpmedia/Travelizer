@@ -10,8 +10,9 @@ class DayController < ApplicationController
     respond_with(@day)
   end
 
-  def update 
-    @day = Day.find(params[:id])
+  def update
+    @trip = Trip.find(params[:trip_id])
+    @day = @trip.days.find(params[:id])
     respond_to do |format|
       if @day.update_attributes(params[:day])
         format.json { head :no_content }

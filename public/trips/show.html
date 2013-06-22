@@ -50,11 +50,10 @@
 <fieldset>
     <legend><i class="icon-calendar"></i>&nbsp;Timeline</legend>
     <ul class="thumbnails">
-        <li class="span4" ng-repeat="day in trip.days">
+        <li ng-repeat="day in trip.days">
             <div class="thumbnail">
-                <img src="http://lorempixel.com/500/100/city/{{$index+1}}">
+                <img width="500px;" src="http://lorempixel.com/500/100/city/{{$index+1}}">
                 <h3>Day {{$index+1}}</h3>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                 <p>{{day.notes}}</p>
                 <p><a href="#/{{trip._id}}/days/edit/{{day._id}}" class="btn btn-primary">Edit</a></p>
             </div>
