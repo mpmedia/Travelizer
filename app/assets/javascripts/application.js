@@ -1,4 +1,5 @@
 //= require jquery.min
+//= require suggest.min
 //= require angular
 //= require bootstrap.min
 //= require bootstrap-datepicker
@@ -9,13 +10,14 @@
 //= require services/tripsService
 //= require services/travellersService
 //= require services/daysService
+//= require services/attractionsService
 //= require controllers/app
 //= require controllers/trips
 //= require controllers/travellers
 //= require controllers/days
 //= require controllers/users
 
-angular.module('travelizer', ['sessionService', 'tripsService', 'travellersService', 'daysService', '$strap.directives'])
+angular.module('travelizer', ['sessionService', 'tripsService', 'travellersService', 'daysService', 'attractionsService', '$strap.directives'])
   .config(['$httpProvider', function($httpProvider){
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 
@@ -53,9 +55,6 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
     .directive('googleplaces', function() {
         return {
             require: 'ngModel',
-            scope: {
-                lonlat: '=lonlat'
-            },
             link: function(scope, element, attrs, model) {
                 var options = {
                     types: ['(regions)']

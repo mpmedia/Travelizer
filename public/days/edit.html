@@ -37,14 +37,15 @@
             <div class="span4">
                 <div class="control-group">
                     <label class="control-label">Things To Do</label>
-                    <div class="controls" ng-repeat="activity in activities">
-                        <input name="activity_name" class="input-medium" type="text" placeholder="Name" ng-model="activity.name" bs-typeahead="findActivity" required/>
-                        <a class="btn btn-mini" style="margin-bottom: 10px" ng-click="removeActivity(activity)"><i class="icon-trash"></i></a>
+                    <div class="controls" ng-repeat="attraction in day.attractions">
+                        {{attraction.name}}
+                        <a class="btn btn-mini" style="margin-bottom: 10px" ng-click="removeAttraction(attraction)"><i class="icon-trash"></i></a>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <a class="btn btn-link" ng-click="addActivity()"><i class="icon-plus"></i>&nbsp;Add Activity</a>
+                        <input name="attraction_name" class="input-medium" type="text" placeholder="Name" ng-model="attraction.name" bs-typeahead="findAttraction"/>
+                        <a class="btn btn-link" ng-click="addAttraction(attraction)"><i class="icon-plus"></i>&nbsp;Add Attraction</a>
                     </div>
                 </div>
             </div>

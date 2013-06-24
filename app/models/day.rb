@@ -5,4 +5,6 @@ class Day
   field :date, type: Date
 
   embedded_in :trip
+
+  embeds_many :attractions
 end
