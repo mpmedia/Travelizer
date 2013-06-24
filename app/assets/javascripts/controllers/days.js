@@ -4,6 +4,7 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day) {"use strict"
     }
 
     $scope.day = Day.get({trip_id: $routeParams.trip_id, day_id: $routeParams.day_id});
+    $scope.activities = [{name:''}];
 
     $scope.updateDay = function(day) {
         var dayService = new Day(day);
@@ -19,5 +20,18 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day) {"use strict"
 
             $location.path('/' + $routeParams.trip_id);
         });
+    };
+
+    $scope.findActivity = function(query) {
+        //TODO
+    };
+
+    $scope.addActivity = function() {
+        $scope.activity = '';
+        $scope.activities.push({name:''});
+    };
+
+    $scope.removeActivity = function(activity) {
+        $scope.activities.splice($scope.activities.indexOf(activity), 1);
     };
 }

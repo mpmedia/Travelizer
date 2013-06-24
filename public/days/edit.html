@@ -24,13 +24,27 @@
                 <div class="control-group">
                     <div class="controls">
                         {{notes}}
-                        <textarea name="notes" type="text" placeholder="Your notes" ng-model="day.notes"/>
+                        <textarea name="notes" type="text" placeholder="Your notes" ng-model="day.notes" rows="10"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         <a class="btn btn-primary" ng-click="updateDay(day)" ng-disabled="updateDayForm.$invalid">Update</a>
                         <a class="btn" href="#/{{trip._id}}">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">Things To Do</label>
+                    <div class="controls" ng-repeat="activity in activities">
+                        <input name="activity_name" class="input-medium" type="text" placeholder="Name" ng-model="activity.name" bs-typeahead="findActivity" required/>
+                        <a class="btn btn-mini" style="margin-bottom: 10px" ng-click="removeActivity(activity)"><i class="icon-trash"></i></a>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <a class="btn btn-link" ng-click="addActivity()"><i class="icon-plus"></i>&nbsp;Add Activity</a>
                     </div>
                 </div>
             </div>
