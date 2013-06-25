@@ -1,9 +1,13 @@
-function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attractions) {"use strict";
+function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, Attractions) {"use strict";
     if($scope.$parent.trip == '' || $scope.$parent.trip._id != $routeParams.trip_id) {
         $scope.$parent.trip = Trip.show({trip_id : $routeParams.trip_id});
     }
 
-    $scope.day = Day.get({trip_id: $routeParams.trip_id, day_id: $routeParams.day_id});
+    $scope.day = Day.get({trip_id: $routeParams.trip_id, day_id: $routeParams.day_id}, function() {
+        if(typeof $scope.day.attractions == "undefined") {
+            $scope.day.attractions = new Array();
+        }
+    });
 
     var API_KEY = 'AIzaSyC6YRqrRWcKpIg5G9Dt0ZyQ5KuQF79vGvA';
     var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
@@ -52,12 +56,18 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attractions) 
             trip_id : $routeParams.trip_id,
             day_id : $routeParams.day_id
         }, function(attraction) {
-            $scope.day.attractions.push(attraction);
+            $scope.day.attractions.push(attraction); //TODO: Update parent scope
             $scope.attraction = '';
         });
     };
 
     $scope.removeAttraction = function(attraction) {
-        $scope.day.attractions.splice($scope.attractions.indexOf(attraction), 1);
+        Attraction.destroy({
+            trip_id : $routeParams.trip_id,
+            day_id : $routeParams.day_id,
+            attraction_id : attraction._id
+        }, function() {
+            $scope.day.attractions.splice($scope.day.attractions.indexOf(attraction), 1); //TODO: Update parent scope
+        });
     };
 }
