@@ -22,7 +22,7 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, A
 
                 var request = {
                     location: results[0].geometry.location,
-                    radius: 500,
+                    radius: 800,
                     types: ['establishment'] //https://developers.google.com/places/documentation/supported_types
                 };
 
