@@ -9,24 +9,108 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, A
         }
     });
 
-    var API_KEY = 'AIzaSyC6YRqrRWcKpIg5G9Dt0ZyQ5KuQF79vGvA';
-    var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
-    var location = $scope.trip.location;
-    var query = [{
-        "mid": null,
-        "name": null,
-        "type": "/travel/tourist_attraction",
-        "/travel/tourist_attraction/near_travel_destination": [{
-            "name": location
-        }]
-    }];
-    var params = {
-        'key': API_KEY,
-        'query': JSON.stringify(query)
+    $scope.initialize = function() {
+        google.maps.visualRefresh = true;
+        $scope.map = new google.maps.Map(document.getElementById('map-canvas'), {
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': $scope.$parent.trip.location }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                $scope.map.setCenter(results[0].geometry.location);
+
+                var request = {
+                    location: results[0].geometry.location,
+                    radius: 500,
+                    types: ['establishment'] //https://developers.google.com/places/documentation/supported_types
+                };
+
+                $scope.placesList = new Array();
+
+                $scope.infowindow = new google.maps.InfoWindow();
+                $scope.service = new google.maps.places.PlacesService($scope.map);
+                $scope.service.nearbySearch(request, $scope.callback);
+
+                google.maps.event.addListener($scope.map, 'dragend', function() {
+                    $scope.refresh();
+                });
+            } else {
+                //Error
+            }
+        });
     };
-    $.getJSON(service_url, params, function(response) {
-        $scope.suggestions = response.result;
-    });
+
+    $scope.refresh = function() {
+        var request = {
+            location: $scope.map.center,
+            radius: 500,
+            types: ['establishment'] //https://developers.google.com/places/documentation/supported_types
+        };
+        $scope.placesList = new Array();
+        $scope.service = new google.maps.places.PlacesService($scope.map);
+        $scope.service.nearbySearch(request, $scope.callback);
+    };
+
+    $scope.callback = function(results, status, pagination) {
+        if (status != google.maps.places.PlacesServiceStatus.OK) {
+            return;
+        } else {
+            $scope.createMarkers(results);
+
+            if (pagination.hasNextPage) {
+                var moreButton = document.getElementById('more');
+
+                moreButton.disabled = false;
+
+                google.maps.event.addDomListenerOnce(moreButton, 'click',
+                    function () {
+                        moreButton.disabled = true;
+                        pagination.nextPage();
+                    });
+            }
+        }
+    };
+
+    $scope.createMarkers = function(places) {
+        var bounds = new google.maps.LatLngBounds();
+
+        for (var i = 0, place; place = places[i]; i++) {
+
+            var image = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            var marker = new google.maps.Marker({
+                map: $scope.map,
+                icon: image, //place.photos[0].getUrl({'maxWidth': 35, 'maxHeight': 35})
+                title: place.name,
+                position: place.geometry.location
+            });
+
+            /*google.maps.event.addListener(marker, 'click', function() {
+                $scope.infowindow.setContent(place.name);
+                $scope.infowindow.open($scope.map, $scope.this);
+            });*/
+
+            /*if(place.photos && place.photos.length > 0) {
+                place.photoURL = place.photos[0].getUrl({'maxWidth': 35, 'maxHeight': 35});
+            }*/
+            $scope.placesList.push(place);
+
+            $scope.$apply();
+
+            bounds.extend(place.geometry.location);
+        }
+
+        $scope.map.fitBounds(bounds);
+    };
+
+    $scope.initialize();
 
     $scope.updateDay = function(day) {
         var dayService = new Day(day);
@@ -45,8 +129,8 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, A
     };
 
     $scope.findAttraction = function(query) {
-        return $.map($scope.suggestions, function(attraction) {
-            return attraction.name;
+        return $.map($scope.placesList, function(place) {
+            return place.name;
         });
     };
 

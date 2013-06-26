@@ -19,6 +19,19 @@
 <fieldset>
     <legend><i class="icon-group"></i>&nbsp;Plan Your Day</legend>
     <div class="row">
+        <div class="span8">
+            <div id="map-canvas"></div>
+            <div id="results">
+                <h2>Things To Do</h2>
+                <ul id="places">
+                    <li ng-repeat="place in placesList">{{place.name}}</li>
+                </ul>
+                <button id="more">More results</button>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
         <form name="updateDayForm">
             <div class="span4">
                 <div class="control-group">

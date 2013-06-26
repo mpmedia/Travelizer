@@ -78,3 +78,15 @@ body {
     margin-bottom: 15px;
     padding: 7px 9px;
 }
+
+/*MAP*/
+
+#map-canvas, #map_canvas {
+    height: 500px;
+}
+
+#more
+{
+    width: 100%;
+    margin: 5px 0 0 0;
+}
