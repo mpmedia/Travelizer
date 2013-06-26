@@ -44,8 +44,8 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, A
     $scope.refresh = function() {
         var request = {
             location: $scope.map.center,
-            radius: 500,
-            types: ['establishment'] //https://developers.google.com/places/documentation/supported_types
+            radius: 500
+            //types: ['establishment'] //https://developers.google.com/places/documentation/supported_types
         };
         $scope.placesList = new Array();
         $scope.service = new google.maps.places.PlacesService($scope.map);
@@ -74,9 +74,9 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, A
 
     $scope.createMarkers = function(places) {
         var bounds = new google.maps.LatLngBounds();
+        var markers = [];
 
         for (var i = 0, place; place = places[i]; i++) {
-
             var image = {
                 url: place.icon,
                 size: new google.maps.Size(71, 71),
@@ -92,16 +92,18 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, A
                 position: place.geometry.location
             });
 
-            /*google.maps.event.addListener(marker, 'click', function() {
-                $scope.infowindow.setContent(place.name);
-                $scope.infowindow.open($scope.map, $scope.this);
-            });*/
+            marker.set('name', place.name);
 
-            /*if(place.photos && place.photos.length > 0) {
-                place.photoURL = place.photos[0].getUrl({'maxWidth': 35, 'maxHeight': 35});
-            }*/
+            google.maps.event.addListener(marker, 'click', function(){
+                var name = this.get('name');
+                $scope.infowindow.setContent(name);
+                $scope.infowindow.open($scope.map, this);
+            });
+
+            if(place.photos && place.photos.length > 0) {
+                place.thumb = place.photos[0].getUrl({'maxWidth': 64, 'maxHeight': 64});
+            }
             $scope.placesList.push(place);
-
             $scope.$apply();
 
             bounds.extend(place.geometry.location);
@@ -128,11 +130,11 @@ function DayUpdateCtrl($scope, $routeParams, $location, Trip, Day, Attraction, A
         });
     };
 
-    $scope.findAttraction = function(query) {
+    /*$scope.findAttraction = function(query) {
         return $.map($scope.placesList, function(place) {
             return place.name;
         });
-    };
+    };*/
 
     $scope.addAttraction = function(attraction) {
         var attractionService = new Attractions(attraction);
