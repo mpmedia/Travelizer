@@ -57,7 +57,7 @@ angular.module('travelizer', ['sessionService', 'tripsService', 'travellersServi
             require: 'ngModel',
             link: function(scope, element, attrs, model) {
                 var options = {
-                    types: ['(regions)']
+                    types: ['(cities)']
                 };
                 scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
 
