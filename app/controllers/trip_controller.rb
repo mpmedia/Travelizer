@@ -1,6 +1,6 @@
 class TripController < ApplicationController
   respond_to :json
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:parse]
 
   def index 
     respond_with(@trips = Trip.all)
@@ -38,5 +38,9 @@ class TripController < ApplicationController
     respond_to do |format|
       format.json  { head :ok }
     end
+  end
+
+  def parse
+    render :json => params[:worldmate_parsing_result]
   end
 end

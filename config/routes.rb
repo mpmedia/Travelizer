@@ -13,7 +13,12 @@ Travelizer::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :home
-  resources :trip
+  resources :trip do
+    collection do
+      post 'parse'
+    end
+  end
+
   resources :traveller
   resources :day
   resources :attraction
