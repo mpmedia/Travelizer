@@ -1,16 +1,54 @@
+<div class="jumbotron">
+	<h4>See what's along the way</h4>
+	<p class="lead">Travelizer lets you quickly map out and see if there is an ATM, bank, convenience store or a cafe between point A & B.<br/>Give it a spin!</p>
+</div>
 <form name="travelizerForm">
-	<div class="row">
-		<div class="span6">
-			<h3>From</h3>
-			<input id="from" type="text" ng-model="travelizer.from" required/>
-		</div>
-		<div class="span6">
-			<h3>To</h3>
-			<input id="to" type="text" ng-model="travelizer.to" required/>
+	<div class="row-fluid">
+		<div class="span8">
+			<input id="from" type="text" class="input-xxlarge" placeholder="From" ng-model="travelizer.from" googleplaces required/>
 		</div>
 	</div>
-	<div class="row">
-		<div id="map" style="width: 800px; height: 400px;"/><br/>
-		<a class="btn btn-primary" ng-click="travelizeRoute(travelizer)" type="submit" ng-disabled="travelizerForm.$invalid">Travelize</a>
+	<div class="row-fluid">
+		<div class="span8">
+			<input id="to" type="text" class="input-xxlarge" placeholder="To" ng-model="travelizer.to" googleplaces required/>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span8">
+			  <select ng-model="travelizer.filter">
+				  <option value="">Show All Results</option>
+				  <option value="atm">ATMs</option>
+				  <option value="bank">Bank</option>
+				  <option value="bar">Bar</option>
+				  <option value="cafe">Cafe</option>
+				  <option value="car_wash">Car Wash</option>
+				  <option value="convenience_store">Convenience Store</option>
+				  <option value="food">Food Joint</option>
+				  <option value="gas_station">Gas Station</option>
+				  <option value="grocery_or_supermarket">Grocery/Supermarket Store</option>
+				  <option value="library">Library</option>
+				  <option value="liquor_store">Liquor Store</option>
+				  <option value="pharmacy">Pharmacy</option>
+				  <option value="post_office">Post Office</option>
+				  <option value="restaurant">Restaurant</option>
+				  <option value="shopping_mall">Shopping Mall</option>
+			</select>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span8" style="overflow:auto;">
+			<div id="map" style="width: 700px; height: 400px;"/><br/>
+			<a class="btn btn-large btn-success" ng-click="travelizeRoute(travelizer)" type="submit" ng-disabled="travelizerForm.$invalid">Travelize</a>
+		</div>
+		<div class="span2" style="overflow:auto;height:400px;">
+			<div id="results">
+				<div class="media" ng-repeat="place in placesList">
+					<div class="media-body">
+						<h6 class="media-heading">{{place.name}}</h6>
+						{{place.vicinity}}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </form>
