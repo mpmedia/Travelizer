@@ -1,0 +1,16 @@
+<form name="travelizerForm">
+	<div class="row">
+		<div class="span6">
+			<h3>From</h3>
+			<input id="from" type="text" ng-model="travelizer.from" required/>
+		</div>
+		<div class="span6">
+			<h3>To</h3>
+			<input id="to" type="text" ng-model="travelizer.to" required/>
+		</div>
+	</div>
+	<div class="row">
+		<div id="map" style="width: 800px; height: 400px;"/><br/>
+		<a class="btn btn-primary" ng-click="travelizeRoute(travelizer)" type="submit" ng-disabled="travelizerForm.$invalid">Travelize</a>
+	</div>
+</form>
