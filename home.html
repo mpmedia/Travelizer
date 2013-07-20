@@ -1,5 +1,4 @@
-<div id="map"></div>
-<div id="overlay">
+<div ng-show="!showResults" id="form">
 	<div class="jumbotron">
 		<div class="masthead">
 			<h1>Travelizer</h1>
@@ -47,13 +46,18 @@
 		</div>
 	</form>
 </div>
-<div class="results">
-	<div class="media" ng-repeat="place in placesList">
-	<div class="media-body">
-		<h6 class="media-heading">{{place.name}}</h6>
-		{{place.vicinity}}
+<div ng-show="showResults" id="results">
+	<div class="media" ui-if="!!placesList.length" ng-repeat="place in placesList">
+		<div class="media-body">
+			<h6 class="media-heading">{{place.name}}</h6>
+			{{place.vicinity}}
+		</div>
 	</div>
+	<div ng-show="!placesList.length">
+		Loading...
 	</div>
+	<hr/>
+	<a class="btn btn-small" ng-click="resetResults()" type="submit">Back</a>
 </div>
 
 

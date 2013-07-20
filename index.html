@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="travelizer">
+<html ng-app="travelizer" ng-controller="AppCtrl">
 <head>
     <title>Travelizer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,12 +19,10 @@
 
 <body>
 <!-- Container -->
-<div id="wrapper" class="container" ng-view>
-
-	
-
-	
-
+<div id="wrapper" class="container">
+	<div id="map"></div>
+	<div id="overlay" ng-view>
+	</div>
 </div>
 <!-- /Container -->
 

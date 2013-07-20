@@ -21,10 +21,7 @@ travelizer.directive('googleplaces', function() {
 	};
 });
 function AppCtrl($scope, $location, $http, $document, $window) {"use strict";
-    
-}
-function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
-	google.maps.visualRefresh = true;
+    google.maps.visualRefresh = true;
 	var mapOptions = {
 		center: new google.maps.LatLng(37.09024, -95.712891),
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -32,21 +29,25 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 	};
 	
 	$scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 	$scope.routeBoxer = new RouteBoxer();
 	
 	$scope.directionService = new google.maps.DirectionsService();
-	$scope.directionsRenderer = new google.maps.DirectionsRenderer({ map: $scope.map });  
+	$scope.directionsRenderer = new google.maps.DirectionsRenderer({ map: $scope.$parent.map });  
 	$scope.placeFilter = new Array();
 	$scope.placesList = new Array();
 	$scope.markers = new Array();
 	$scope.boxpolys = new Array();
 	$scope.infowindow = new google.maps.InfoWindow();
+	$scope.showResults = false;
 	
 	$scope.travelizeRoute = function(travelizer) {
 		// Clear any previous route boxes from the map
 		$scope.clearBoxes();
 		$scope.clearMarkers();
 		$scope.placesList = new Array();
+		$scope.showResults = true;
 		
 		if(travelizer.filter)
 			$scope.placeFilter.push(travelizer.filter)
@@ -73,9 +74,16 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 		});
     };
 	
+	$scope.resetResults = function() {
+		$scope.clearBoxes();
+		$scope.clearMarkers();
+		$scope.placesList = new Array();
+		$scope.showResults = false;
+	};
+	
 	$scope.drawBoxes = function(boxes) {
 		$scope.boxpolys = new Array(boxes.length);
-		$scope.service = new google.maps.places.PlacesService($scope.map);
+		$scope.service = new google.maps.places.PlacesService($scope.$parent.map);
 		for (var i = 0; i < boxes.length; i++) {
 			$scope.boxpolys[i] = new google.maps.Rectangle({
 			  bounds: boxes[i],
@@ -83,7 +91,7 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 			  strokeOpacity: 0,
 			  strokeColor: '#000000',
 			  strokeWeight: 0,
-			  map: $scope.map
+			  map: $scope.$parent.map
 			});
 			var request = {
 				bounds: $scope.boxpolys[i].getBounds(), //The bounds within which to search for Places
@@ -117,7 +125,7 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 			};
 
 			var marker = new google.maps.Marker({
-				map: $scope.map,
+				map: $scope.$parent.map,
 				icon: image,
 				title: place.name,
 				position: place.geometry.location
@@ -129,7 +137,7 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 			google.maps.event.addListener(marker, 'click', function(){
 				var name = this.get('name');
 				$scope.infowindow.setContent(name);
-				$scope.infowindow.open($scope.map, this);
+				$scope.infowindow.open($scope.$parent.map, this);
 			});
 
 			if(place.photos && place.photos.length > 0) {

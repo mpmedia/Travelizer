@@ -13,6 +13,9 @@ html, body, #map, #wrapper {
   float: left;
 }
 
+#form {
+  height: 370px;
+}
 #overlay {
   background: #cc3333;
   opacity:.9;
@@ -24,17 +27,10 @@ html, body, #map, #wrapper {
   font-size:32px;
   color:#fff;
   padding:15px;
+  overflow: auto;
 }
 
 #results {
-  background: #cc3333;
-  opacity:.9;
-  position: absolute;
-  bottom:0%;
-  width:100%;
-  height:200px;
-  font-size:28px;
-  color:#fff;
-  padding:15px;
+  font-size: 16px !important;
 }
 
