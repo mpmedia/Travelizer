@@ -47,6 +47,8 @@
 	</form>
 </div>
 <div ng-show="showResults" id="results">
+    <a class="btn btn-small" ng-click="resetResults()" type="submit">Back</a>
+    <hr/>
     <div class="media" ui-if="!!placesList.length" ng-repeat="place in placesList">
         <a class="pull-left" href="#">
             <img class="media-object" data-src="{{place.thumb}}">

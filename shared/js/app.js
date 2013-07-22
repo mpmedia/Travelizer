@@ -78,11 +78,16 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 		$scope.clearMarkers();
 		$scope.placesList = new Array();
 		$scope.showResults = false;
+        $.each($scope.searchRequests, function(index, value) {
+            clearTimeout(value);
+        });
+        $.pnotify_remove_all();
 	};
 	
 	$scope.drawBoxes = function(boxes) {
 		$scope.boxpolys = new Array(boxes.length);
 		$scope.service = new google.maps.places.PlacesService($scope.$parent.map);
+        $scope.searchRequests = new Array(boxes.length);
         $scope.notice = $.pnotify({
             text: 'Searching...',
             hide: false,
@@ -118,15 +123,16 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 	};
 	
 	$scope.searchNearby = function(request, index, count) {
-		setTimeout(function() { 
-			$scope.service.nearbySearch(request, function(results, status, pagination) {
+        $scope.searchRequests[index] = setTimeout(function() {
+            $scope.service.nearbySearch(request, function(results, status, pagination) {
                 $scope.notice.pnotify({hide: false, text: Math.floor((index/count)*100) + "% complete..."});
-				if (status === google.maps.places.PlacesServiceStatus.OK) {
-					$scope.createMarkers(results);
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    $scope.createMarkers(results);
                     $scope.notice.pnotify({hide: true});
-				} else {
+                } else {
                     $scope.notice.pnotify({hide: true});
-				}});
+                }
+            });
 		}, (index * 500));
     };
 	
