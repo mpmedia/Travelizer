@@ -83,6 +83,23 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 	$scope.drawBoxes = function(boxes) {
 		$scope.boxpolys = new Array(boxes.length);
 		$scope.service = new google.maps.places.PlacesService($scope.$parent.map);
+        $scope.notice = $.pnotify({
+            text: 'Searching...',
+            hide: false,
+            closer: false,
+            sticker: false,
+            shadow: false,
+            addclass: 'stack-bottomright custom',
+            stack: {"dir1": "up", "dir2": "left", "firstpos1": 50, "firstpos2": 25},
+            opacity: .8,
+            nonblock: true,
+            nonblock_opacity: .2,
+            delay: 1000,
+            history: false,
+            animate_speed: 'fast',
+            width: '190px',
+            icon: ''
+        });
 		for (var i = 0; i < boxes.length; i++) {
 			$scope.boxpolys[i] = new google.maps.Rectangle({
 			  bounds: boxes[i],
@@ -96,19 +113,21 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 				bounds: $scope.boxpolys[i].getBounds(), //The bounds within which to search for Places
 				types: $scope.placeFilter
 			};
-			$scope.searchNearby(request, i);
+			$scope.searchNearby(request, i, boxes.length);
 		}
 	};
 	
-	$scope.searchNearby = function(request, timeout) {
+	$scope.searchNearby = function(request, index, count) {
 		setTimeout(function() { 
 			$scope.service.nearbySearch(request, function(results, status, pagination) {
+                $scope.notice.pnotify({hide: false, text: Math.floor((index/count)*100) + "% complete..."});
 				if (status === google.maps.places.PlacesServiceStatus.OK) {
 					$scope.createMarkers(results);
+                    $scope.notice.pnotify({hide: true});
 				} else {
-					console.log(status);
+                    $scope.notice.pnotify({hide: true});
 				}});
-		}, (timeout * 500));
+		}, (index * 500));
     };
 	
 	$scope.createMarkers = function(places) {

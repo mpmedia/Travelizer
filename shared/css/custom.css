@@ -34,3 +34,23 @@ html, body, #map, #wrapper {
   font-size: 16px !important;
 }
 
+.ui-pnotify.stack-bottomright {
+    /* These are just CSS default values to reset the pnotify CSS. */
+    right: auto;
+    top: auto;
+    position: absolute;
+}
+
+.ui-pnotify.custom .ui-pnotify-container {
+    background-color: #cc3333 !important;
+    background-image: none !important;
+    border: none !important;
+}
+.ui-pnotify.custom .ui-pnotify-title, .ui-pnotify.custom .ui-pnotify-text {
+    color: #FFF !important;
+    line-height: 1 !important;
+    text-rendering: geometricPrecision !important;
+}
+.ui-pnotify.custom .ui-pnotify-title {
+    font-weight: bold;
+}
