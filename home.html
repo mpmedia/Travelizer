@@ -47,14 +47,14 @@
 	</form>
 </div>
 <div ng-show="showResults" id="results">
-	<div class="media" ui-if="!!placesList.length" ng-repeat="place in placesList">
-		<div class="media-body">
+    <div class="media" ui-if="!!placesList.length" ng-repeat="place in placesList">
+        <a class="pull-left" href="#">
+            <img class="media-object" data-src="{{place.thumb}}">
+        </a>
+        <div class="media-body">
 			<h6 class="media-heading">{{place.name}}</h6>
 			{{place.vicinity}}
 		</div>
-	</div>
-	<div ng-show="!placesList.length">
-		Loading...
 	</div>
 	<hr/>
 	<a class="btn btn-small" ng-click="resetResults()" type="submit">Back</a>

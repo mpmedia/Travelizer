@@ -62,7 +62,6 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 		$scope.directionService.route($scope.request, function(result, status) {
 			if (status == google.maps.DirectionsStatus.OK) {
 			  $scope.directionsRenderer.setDirections(result);
-			  
 			  // Box around the overview path of the first route
 			  var path = result.routes[0].overview_path;
 			  //var distance = result.routes[0].legs[0].distance.value / 1609.344; // Convert meters to miles
@@ -143,6 +142,7 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 			if(place.photos && place.photos.length > 0) {
 				place.thumb = place.photos[0].getUrl({'maxWidth': 64, 'maxHeight': 64});
 			}
+
 			$scope.placesList.push(place);
             $scope.$apply();
 			
