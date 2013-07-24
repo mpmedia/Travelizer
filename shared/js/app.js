@@ -35,7 +35,6 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 	
 	$scope.directionService = new google.maps.DirectionsService();
 	$scope.directionsRenderer = new google.maps.DirectionsRenderer({ map: $scope.$parent.map });  
-	$scope.placeFilter = new Array();
 	$scope.placesList = new Array();
 	$scope.markers = new Array();
 	$scope.boxpolys = new Array();
@@ -47,11 +46,12 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 		$scope.clearBoxes();
 		$scope.clearMarkers();
 		$scope.placesList = new Array();
+        $scope.placeFilter = new Array();
 		$scope.showResults = true;
 		
 		if(travelizer.filter)
-			$scope.placeFilter.push(travelizer.filter)
-		
+			$scope.placeFilter.push(travelizer.filter);
+
 		$scope.request = {
 			origin: travelizer.from,
 			destination: travelizer.to,
