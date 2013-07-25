@@ -34,6 +34,12 @@ html, body, #map, #wrapper {
   font-size: 16px !important;
 }
 
+#results h4 a {
+    color: #FFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .ui-pnotify.stack-bottomright {
     /* These are just CSS default values to reset the pnotify CSS. */
     right: auto;

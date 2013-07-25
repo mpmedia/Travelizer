@@ -46,11 +46,14 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 		$scope.clearBoxes();
 		$scope.clearMarkers();
 		$scope.placesList = new Array();
-        $scope.placeFilter = new Array();
+        $scope.resultsFilter = '';
+        $scope.placeFilter = ['establishment'];
 		$scope.showResults = true;
-		
-		if(travelizer.filter)
+
+		if(travelizer.filter) {
+            $scope.placeFilter.length = 0;
 			$scope.placeFilter.push(travelizer.filter);
+        }
 
 		$scope.request = {
 			origin: travelizer.from,
@@ -176,7 +179,14 @@ function HomeCtrl($scope, $location, $http, $document, $window) {"use strict";
 
 		//$scope.map.fitBounds(bounds);
 	};
-	
+
+    $scope.showMarker = function(place) {
+        var index = $scope.placesList.indexOf(place);
+        var marker = $scope.markers[index];
+        $scope.$parent.map.panTo(marker.getPosition());
+        window.setTimeout(function(){google.maps.event.trigger(marker, 'click');},1000);
+    };
+
 	$scope.clearMarkers = function() {
 		if ($scope.markers.length > 0) {
 			for (var i = 0; i < $scope.markers.length; i++) {

@@ -20,7 +20,7 @@
 		<div class="row-fluid">
 			<div class="span8">
 				  <select ng-model="travelizer.filter">
-					  <option value="">Show All Results</option>
+					  <option value="" selected="selected">Show All Results</option>
 					  <option value="atm">ATMs</option>
 					  <option value="bank">Bank</option>
 					  <option value="bar">Bar</option>
@@ -47,19 +47,30 @@
 	</form>
 </div>
 <div ng-show="showResults" id="results">
-    <a class="btn btn-small" ng-click="resetResults()" type="submit">Back</a>
+    <div class="row">
+        <div class="span5">
+            <input id="filter" type="text" class="input-xlarge" ng-model="resultsFilter" placeholder="Filter"/>
+        </div>
+        <div class="offset5">
+            <a class="btn btn-small" ng-click="resetResults()" type="submit">Back</a>
+        </div>
+    </div>
     <hr/>
-    <div class="media" ui-if="!!placesList.length" ng-repeat="place in placesList">
+    <div class="media" ui-if="!!placesList.length" ng-repeat="place in placesList|filter:resultsFilter">
         <a class="pull-left" href="#">
             <img class="media-object" data-src="{{place.thumb}}">
         </a>
         <div class="media-body">
-			<h6 class="media-heading">{{place.name}}</h6>
-			{{place.vicinity}}
+			<h4 class="media-heading"><a ng-click="showMarker(place)">{{place.name}}</a></h4>
+            <address>{{place.vicinity}}</address>
 		</div>
 	</div>
 	<hr/>
-	<a class="btn btn-small" ng-click="resetResults()" type="submit">Back</a>
+    <div class="row">
+        <div class="offset5">
+            <a class="btn btn-small" ng-click="resetResults()" type="submit">Back</a>
+        </div>
+    </div>
 </div>
 
 
